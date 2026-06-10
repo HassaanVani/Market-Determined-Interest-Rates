@@ -23,7 +23,7 @@ class FirmAgent(mesa.Agent):
         super().__init__(model)
         self.unique_id = unique_id
         # Using instructor to patch the AsyncOpenAI client
-        self.client = instructor.from_openai(client, mode=instructor.Mode.JSON)
+        self.client = instructor.from_openai(client, mode=instructor.Mode.MD_JSON)
 
         # State variables
         self.current_balance: float = 100.0  # Initial equity
@@ -73,7 +73,7 @@ Based on the macroeconomic conditions, formulate a strategy.
         # We wrap in a try-except to handle potential LLM parsing errors
         try:
             demand = await self.client.chat.completions.create(
-                model="deepseek-r1:8b",
+                model=self.model.llm_model,
                 messages=[
                     {
                         "role": "system",

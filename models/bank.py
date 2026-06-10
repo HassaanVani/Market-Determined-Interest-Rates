@@ -20,7 +20,7 @@ class BankAgent(mesa.Agent):
     def __init__(self, unique_id, model, client: AsyncOpenAI):
         super().__init__(model)
         self.unique_id = unique_id
-        self.client = instructor.from_openai(client, mode=instructor.Mode.JSON)
+        self.client = instructor.from_openai(client, mode=instructor.Mode.MD_JSON)
 
         self.current_balance: float = 1000.0  # Initial assets (e.g. reserves)
         self.current_debt: float = 0.0  # Liabilities (e.g. deposits)
@@ -69,7 +69,7 @@ Do not exceed the firm's maximum acceptable rate if you want them to accept.
 
         try:
             decision = await self.client.chat.completions.create(
-                model="deepseek-r1:8b",
+                model=self.model.llm_model,
                 messages=[
                     {
                         "role": "system",

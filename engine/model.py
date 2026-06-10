@@ -7,11 +7,12 @@ from openai import AsyncOpenAI
 
 
 class MacroModel(mesa.Model):
-    def __init__(self, n_firms=5, n_banks=2, db_path=":memory:", control_mode=False):
+    def __init__(self, n_firms=5, n_banks=2, db_path=":memory:", control_mode=False, llm_model="deepseek-r1:8b"):
         super().__init__()
         self.num_firms = n_firms
         self.num_banks = n_banks
         self.control_mode = control_mode
+        self.llm_model = llm_model
 
         self.ledger = Ledger(db_path)
         self.schedule = AsyncMacroScheduler(self)

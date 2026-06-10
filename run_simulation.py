@@ -3,12 +3,12 @@ import sys
 import numpy as np
 from engine.model import MacroModel
 
-def run_single_simulation(steps, control_mode, output_csv):
-    print(f"Starting simulation (Control Mode = {control_mode}) for {steps} steps...")
+def run_single_simulation(steps, control_mode, output_csv, llm_model="deepseek-r1:8b"):
+    print(f"Starting simulation (Control Mode = {control_mode}) for {steps} steps using {llm_model}...")
     
     # Initialize the model
     # To write to a DB file instead of memory, you can specify db_path="simulation.db"
-    model = MacroModel(n_firms=3, n_banks=1, control_mode=control_mode)
+    model = MacroModel(n_firms=3, n_banks=1, control_mode=control_mode, llm_model=llm_model)
     
     # Header for the CSV
     headers = [
@@ -96,17 +96,20 @@ def print_summary_statistics(treatment_data, control_data):
 
 if __name__ == "__main__":
     steps = 5
+    llm_model = "deepseek-r1:8b"
     if len(sys.argv) > 1:
         try:
             steps = int(sys.argv[1])
         except ValueError:
             pass
+    if len(sys.argv) > 2:
+        llm_model = sys.argv[2]
             
     # Run Treatment (LLM Negotiation)
-    treatment_records = run_single_simulation(steps, control_mode=False, output_csv="treatment_results.csv")
+    treatment_records = run_single_simulation(steps, control_mode=False, output_csv="treatment_results.csv", llm_model=llm_model)
     
     # Run Control (Deterministic Rules)
-    control_records = run_single_simulation(steps, control_mode=True, output_csv="control_results.csv")
+    control_records = run_single_simulation(steps, control_mode=True, output_csv="control_results.csv", llm_model=llm_model)
     
     # Output Paper-ready Summary Table
     print_summary_statistics(treatment_records, control_records)
