@@ -42,6 +42,7 @@ class FirmAgent(mesa.Agent):
             "current_debt": self.current_debt,
             "realized_inflation": self.model.realized_inflation,
             "three_step_yield_trend": self.model.three_step_yield_trend,
+            "sentiment": getattr(self.model, "agent_sentiment", "neutral"),
         }
 
     async def strategize_credit_demand(self):
@@ -53,11 +54,17 @@ class FirmAgent(mesa.Agent):
             self.current_demand = FirmCreditDemand(
                 chain_of_thought="Control group: deterministic rule-based credit demand.",
                 loan_principal_requested=20.0 if self.current_debt == 0 else 5.0,
-                max_acceptable_nominal_rate=0.08
+                max_acceptable_nominal_rate=0.08,
             )
             return self.current_demand
 
         memory_state = self.get_compact_memory()
+        sentiment_context = ""
+        sentiment = memory_state["sentiment"]
+        if sentiment == "optimistic":
+            sentiment_context = "\nMacroeconomic Outlook: Highly Favorable. High demand expected. Animal spirits are strong. Plan for aggressive growth and higher credit capacity."
+        elif sentiment == "pessimistic":
+            sentiment_context = "\nMacroeconomic Outlook: Elevated Risk. Downward trends expected. Conserve capital, minimize credit/debt requests, and hold cash reserves."
 
         prompt = f"""
 You are a Firm deciding how much credit to request and the maximum interest rate you will accept.
@@ -65,7 +72,7 @@ Your current state:
 Balance: {memory_state['current_balance']}
 Debt: {memory_state['current_debt']}
 Realized Inflation: {memory_state['realized_inflation']}
-Three Step Yield Trend: {memory_state['three_step_yield_trend']}
+Three Step Yield Trend: {memory_state['three_step_yield_trend']}{sentiment_context}
 
 Based on the macroeconomic conditions, formulate a strategy.
         """
@@ -77,11 +84,12 @@ Based on the macroeconomic conditions, formulate a strategy.
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are a Firm agent in a macroeconomic simulation.",
+                        "content": "You are a Firm agent in a macroeconomic simulation. Output valid JSON.",
                     },
                     {"role": "user", "content": prompt},
                 ],
                 response_model=FirmCreditDemand,
+                temperature=getattr(self.model, "llm_temperature", 0.7),
             )
             self.current_demand = demand
         except Exception as e:
