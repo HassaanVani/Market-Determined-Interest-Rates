@@ -26,6 +26,10 @@ class BankAgent(mesa.Agent):
         self.current_debt: float = 0.0  # Liabilities (e.g. deposits)
         self.equity: float = 1000.0
 
+        # Expectation trackers (adaptive expectations)
+        self.exp_inflation: float = 0.0
+        self.exp_nominal_rate: float = 0.05
+
     def get_compact_memory(self):
         """
         Compresses active memory into a lean dictionary avoiding raw transaction strings.
@@ -35,11 +39,28 @@ class BankAgent(mesa.Agent):
             "current_debt": self.current_debt,
             "realized_inflation": self.model.realized_inflation,
             "three_step_yield_trend": self.model.three_step_yield_trend,
+            "exp_inflation": self.exp_inflation,
+            "exp_nominal_rate": self.exp_nominal_rate,
         }
 
     async def evaluate_loan(
         self, firm_id: str, principal: float, max_rate: float
     ) -> BankCreditDecision:
+        # Programmatic borrower leverage check
+        firm = next(
+            (f for f in self.model.schedule.firms if f.unique_id == firm_id), None
+        )
+        if firm:
+            equity = firm.equity
+            debt = firm.current_debt
+            leverage_limit = getattr(self.model, "leverage_limit", 1.5)
+            if equity <= 0 or (debt / equity) > leverage_limit:
+                return BankCreditDecision(
+                    chain_of_thought=f"Leverage Rejection: Firm debt-to-equity ratio ({debt / equity if equity > 0 else 'infinity':.4f}) exceeds leverage limit ({leverage_limit}).",
+                    approved=False,
+                    offered_nominal_rate=0.0,
+                )
+
         # Programmatic Regulatory Constraints Check (Basel & Reserves)
         reserve_requirement = getattr(self.model, "reserve_requirement", 0.10)
         capital_requirement = getattr(self.model, "capital_requirement", 0.08)
@@ -76,15 +97,17 @@ class BankAgent(mesa.Agent):
 
         if getattr(self.model, "control_mode", False):
             # Control group: deterministic central bank rule (e.g. Taylor rule style or simple fixed rate)
-            # Say, a fixed nominal rate of 5% (0.05)
-            fixed_rate = 0.05
+            # Adjust offered rate based on expected inflation and nominal rate
+            expected_real_rate = 0.03
+            offered_rate = expected_real_rate + self.exp_inflation
+            offered_rate = max(0.01, offered_rate)
             approved = (principal <= self.current_balance * 0.5) and (
-                fixed_rate <= max_rate
+                offered_rate <= max_rate
             )
             return BankCreditDecision(
-                chain_of_thought="Control group: deterministic approval rule with fixed interest rate of 5%.",
+                chain_of_thought=f"Control group: deterministic approval rule with inflation-adjusted offered rate of {offered_rate:.4f}.",
                 approved=approved,
-                offered_nominal_rate=fixed_rate if approved else 0.0,
+                offered_nominal_rate=offered_rate if approved else 0.0,
             )
 
         memory_state = self.get_compact_memory()
@@ -103,7 +126,9 @@ Your current state:
 Balance (Reserves): {memory_state['current_balance']}
 Debt (Deposits): {memory_state['current_debt']}
 Realized Inflation: {memory_state['realized_inflation']}
-Three Step Yield Trend: {memory_state['three_step_yield_trend']}{sentiment_context}
+Three Step Yield Trend: {memory_state['three_step_yield_trend']}
+Expected Inflation: {memory_state['exp_inflation']}
+Expected Nominal Interest Rate: {memory_state['exp_nominal_rate']}{sentiment_context}
 
 Decide whether to approve this loan and what nominal rate to offer. 
 Do not exceed the firm's maximum acceptable rate if you want them to accept.

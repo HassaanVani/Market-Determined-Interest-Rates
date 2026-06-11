@@ -19,6 +19,7 @@ class MacroModel(mesa.Model):
         llm_temperature=0.7,
         reserve_requirement=0.10,
         capital_requirement=0.08,
+        leverage_limit=1.5,
     ):
         super().__init__()
         self.num_firms = n_firms
@@ -29,6 +30,7 @@ class MacroModel(mesa.Model):
         self.llm_temperature = llm_temperature
         self.reserve_requirement = reserve_requirement
         self.capital_requirement = capital_requirement
+        self.leverage_limit = leverage_limit
 
         self.ledger = Ledger(db_path)
         self.schedule = AsyncMacroScheduler(self)
@@ -42,11 +44,15 @@ class MacroModel(mesa.Model):
             api_key="ollama",  # api_key is required by the SDK but ignored by Ollama
         )
 
-        # Macroeconomic variables
+        # Macroeconomic variables & Expectation trackers
         self.nominal_rate = 0.0
         self.real_interest_rate = 0.0
         self.realized_inflation = 0.0
         self.three_step_yield_trend = 0.0
+        self.exp_inflation = 0.0
+        self.exp_nominal_rate = 0.05
+        self.write_offs_in_step = 0.0
+        self.defaults_in_step = 0
 
         # Create Households (starts with 100.0 deposits)
         self.household = HouseholdAgent("household", self)
@@ -76,9 +82,11 @@ class MacroModel(mesa.Model):
                 b.unique_id, "Bank", b.current_balance, b.current_debt, b.equity
             )
 
-        # Initialize Firms
+        # Initialize Firms with heterogeneous risk profiles (round-robin)
+        profiles = ["risk-averse", "neutral", "risk-seeking"]
         for i in range(self.num_firms):
-            f = FirmAgent(f"firm_{i}", self, self.client)
+            risk_profile = profiles[i % len(profiles)]
+            f = FirmAgent(f"firm_{i}", self, self.client, risk_profile=risk_profile)
             self.schedule.add(f)
             self.ledger.update_balance_sheet(
                 f.unique_id, "Firm", f.current_balance, f.current_debt, f.equity

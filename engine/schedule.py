@@ -43,6 +43,9 @@ class AsyncMacroScheduler:
         5. Debt Service & Amortization (Firms pay Bank; default resolution if Firm insolvent)
         6. Macro-Accounting & Synchronization (Fisher calculation, double-entry validation)
         """
+        self.model.write_offs_in_step = 0.0
+        self.model.defaults_in_step = 0
+
         # --- 1. Production & Wage Payments ---
         payroll_per_firm = 5.0
         total_payroll = 0.0
@@ -161,6 +164,7 @@ class AsyncMacroScheduler:
                     still_active_loans.append(loan)
             else:
                 # DEFAULT! Firm cannot afford total debt service.
+                self.model.defaults_in_step += 1
                 # Wipes out all remaining deposits to service what is possible
                 paid = firm.current_balance
                 firm.current_balance = 0.0
@@ -174,6 +178,7 @@ class AsyncMacroScheduler:
 
                 # Write off the rest of the loan
                 write_off_principal = loan["remaining_principal"] - amort_paid
+                self.model.write_offs_in_step += write_off_principal
                 firm.current_debt -= write_off_principal  # Debt canceled for firm
 
                 # Bank takes the hit to equity (losses written off, reducing outstanding loans asset)
@@ -270,3 +275,23 @@ class AsyncMacroScheduler:
             self.model.nominal_rate - self.model.realized_inflation
         )
         self.model.three_step_yield_trend = self.model.real_interest_rate
+
+        # --- 7. Adaptive Expectations Update ---
+        lambda_rate = 0.3
+        realized_inf = self.model.realized_inflation
+        realized_nom = self.model.nominal_rate
+
+        self.model.exp_inflation += lambda_rate * (
+            realized_inf - self.model.exp_inflation
+        )
+        self.model.exp_nominal_rate += lambda_rate * (
+            realized_nom - self.model.exp_nominal_rate
+        )
+
+        for f in self.firms:
+            f.exp_inflation += lambda_rate * (realized_inf - f.exp_inflation)
+            f.exp_nominal_rate += lambda_rate * (realized_nom - f.exp_nominal_rate)
+
+        for b in self.banks:
+            b.exp_inflation += lambda_rate * (realized_inf - b.exp_inflation)
+            b.exp_nominal_rate += lambda_rate * (realized_nom - b.exp_nominal_rate)

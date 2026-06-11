@@ -119,46 +119,154 @@ def print_summary_statistics(treatment_data, control_data):
     print("==========================================================================")
 
 
+def run_sweep(steps=10, num_seeds=10):
+    print(
+        f"Running parameter sensitivity sweep across reserve requirements (0.05 to 0.20) with {num_seeds} seeds..."
+    )
+    reserve_rates = [0.05, 0.10, 0.15, 0.20]
+    sweep_results = {}
+
+    for req in reserve_rates:
+        print(f"Testing reserve requirement: {req:.2f}")
+        all_money_supplies = []
+        all_debts = []
+        all_nominal_rates = []
+        all_inflations = []
+        all_defaults = []
+
+        for seed in range(num_seeds):
+            # Use distinct seeds where possible (random behavior depends on python random seed)
+            import random
+
+            random.seed(seed)
+            np.random.seed(seed)
+
+            model = MacroModel(
+                n_firms=5,
+                n_banks=2,
+                db_path=":memory:",
+                control_mode=True,  # deterministic rules for sweep reproducibility
+                reserve_requirement=req,
+            )
+
+            for s in range(1, steps + 1):
+                try:
+                    model.step()
+                except Exception as e:
+                    print(f"Sweep simulation halted at step {s} due to: {e}")
+                    break
+
+                total_money = sum(f.current_balance for f in model.schedule.firms)
+                total_debt = sum(f.current_debt for f in model.schedule.firms)
+
+                all_money_supplies.append(total_money)
+                all_debts.append(total_debt)
+                all_nominal_rates.append(model.nominal_rate)
+                all_inflations.append(model.realized_inflation)
+                all_defaults.append(model.defaults_in_step)
+
+        sweep_results[req] = {
+            "money_supply_mean": (
+                np.mean(all_money_supplies) if all_money_supplies else 0.0
+            ),
+            "money_supply_std": (
+                np.std(all_money_supplies) if all_money_supplies else 0.0
+            ),
+            "debt_mean": np.mean(all_debts) if all_debts else 0.0,
+            "debt_std": np.std(all_debts) if all_debts else 0.0,
+            "nominal_rate_mean": (
+                np.mean(all_nominal_rates) if all_nominal_rates else 0.0
+            ),
+            "nominal_rate_std": np.std(all_nominal_rates) if all_nominal_rates else 0.0,
+            "inflation_mean": np.mean(all_inflations) if all_inflations else 0.0,
+            "inflation_std": np.std(all_inflations) if all_inflations else 0.0,
+            "defaults_mean": np.mean(all_defaults) if all_defaults else 0.0,
+            "defaults_std": np.std(all_defaults) if all_defaults else 0.0,
+        }
+
+    print(
+        "\n=========================================================================================================="
+    )
+    print(
+        "                              SENSITIVITY ANALYSIS: RESERVE REQUIREMENT SWEEP                             "
+    )
+    print(
+        "=========================================================================================================="
+    )
+    print(
+        f"{'Reserve Req':<12} | {'Money Supply':<20} | {'Outstanding Debt':<20} | {'Nominal Rate':<16} | {'Inflation':<16} | {'Defaults/Step':<16}"
+    )
+    print("-" * 110)
+    for req in reserve_rates:
+        res = sweep_results[req]
+        m_str = f"{res['money_supply_mean']:.2f} ({res['money_supply_std']:.2f})"
+        d_str = f"{res['debt_mean']:.2f} ({res['debt_std']:.2f})"
+        r_str = f"{res['nominal_rate_mean']:.4f} ({res['nominal_rate_std']:.4f})"
+        i_str = f"{res['inflation_mean']:.4f} ({res['inflation_std']:.4f})"
+        df_str = f"{res['defaults_mean']:.2f} ({res['defaults_std']:.2f})"
+        print(
+            f"{req:<12.2f} | {m_str:<20} | {d_str:<20} | {r_str:<16} | {i_str:<16} | {df_str:<16}"
+        )
+    print(
+        "==========================================================================================================\n"
+    )
+
+
 if __name__ == "__main__":
-    steps = 5
-    llm_model = "deepseek-r1:8b"
-    agent_sentiment = "neutral"
-    llm_temperature = 0.7
+    if len(sys.argv) > 1 and sys.argv[1] == "sweep":
+        steps = 10
+        seeds = 10
+        if len(sys.argv) > 2:
+            try:
+                steps = int(sys.argv[2])
+            except ValueError:
+                pass
+        if len(sys.argv) > 3:
+            try:
+                seeds = int(sys.argv[3])
+            except ValueError:
+                pass
+        run_sweep(steps=steps, num_seeds=seeds)
+    else:
+        steps = 5
+        llm_model = "deepseek-r1:8b"
+        agent_sentiment = "neutral"
+        llm_temperature = 0.7
 
-    if len(sys.argv) > 1:
-        try:
-            steps = int(sys.argv[1])
-        except ValueError:
-            pass
-    if len(sys.argv) > 2:
-        llm_model = sys.argv[2]
-    if len(sys.argv) > 3:
-        agent_sentiment = sys.argv[3]
-    if len(sys.argv) > 4:
-        try:
-            llm_temperature = float(sys.argv[4])
-        except ValueError:
-            pass
+        if len(sys.argv) > 1:
+            try:
+                steps = int(sys.argv[1])
+            except ValueError:
+                pass
+        if len(sys.argv) > 2:
+            llm_model = sys.argv[2]
+        if len(sys.argv) > 3:
+            agent_sentiment = sys.argv[3]
+        if len(sys.argv) > 4:
+            try:
+                llm_temperature = float(sys.argv[4])
+            except ValueError:
+                pass
 
-    # Run Treatment (LLM Negotiation)
-    treatment_records = run_single_simulation(
-        steps,
-        control_mode=False,
-        output_csv="treatment_results.csv",
-        llm_model=llm_model,
-        agent_sentiment=agent_sentiment,
-        llm_temperature=llm_temperature,
-    )
+        # Run Treatment (LLM Negotiation)
+        treatment_records = run_single_simulation(
+            steps,
+            control_mode=False,
+            output_csv="treatment_results.csv",
+            llm_model=llm_model,
+            agent_sentiment=agent_sentiment,
+            llm_temperature=llm_temperature,
+        )
 
-    # Run Control (Deterministic Rules)
-    control_records = run_single_simulation(
-        steps,
-        control_mode=True,
-        output_csv="control_results.csv",
-        llm_model=llm_model,
-        agent_sentiment=agent_sentiment,
-        llm_temperature=llm_temperature,
-    )
+        # Run Control (Deterministic Rules)
+        control_records = run_single_simulation(
+            steps,
+            control_mode=True,
+            output_csv="control_results.csv",
+            llm_model=llm_model,
+            agent_sentiment=agent_sentiment,
+            llm_temperature=llm_temperature,
+        )
 
-    # Output Paper-ready Summary Table
-    print_summary_statistics(treatment_records, control_records)
+        # Output Paper-ready Summary Table
+        print_summary_statistics(treatment_records, control_records)

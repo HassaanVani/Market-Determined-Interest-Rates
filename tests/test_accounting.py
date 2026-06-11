@@ -104,3 +104,51 @@ def test_balance_sheet_mismatch_raises_exception():
 
     with pytest.raises(BalanceSheetMismatch):
         model.ledger.validate_balance_sheets()
+
+
+def test_leverage_limit_rejection():
+    import asyncio
+
+    # Initialize with a strict leverage limit of 1.5
+    model = MacroModel(n_firms=1, n_banks=1, leverage_limit=1.5)
+    bank = model.schedule.banks[0]
+    firm = model.schedule.firms[0]
+
+    # Set leverage to 1.6 (Debt=160, Equity=100)
+    firm.current_debt = 160.0
+    firm.equity = 100.0
+
+    decision = asyncio.run(
+        bank.evaluate_loan(firm_id=firm.unique_id, principal=10.0, max_rate=0.10)
+    )
+    assert not decision.approved
+    assert "leverage" in decision.chain_of_thought.lower()
+
+
+def test_adaptive_expectations_forecasting():
+    import math
+
+    model = MacroModel(n_firms=1, n_banks=1, control_mode=True)
+    # Starting expected nominal rate: 0.05
+    # Starting expected inflation: 0.0
+
+    # Run one step
+    model.step()
+
+    # Under control mode:
+    # 1. Firm risk profile: "risk-averse"
+    #    max_acceptable_rate = 0.04
+    # 2. Bank offered rate = 0.03
+    #    Since 0.03 <= 0.04 and principal requested (10) <= bank reserves * 0.5 (500), approved.
+    # 3. Realized nominal_rate = 0.03
+    # 4. Realized inflation = 0.10 (clamped from 1.30)
+    # 5. Model exp_nominal_rate = 0.05 + 0.3 * (0.03 - 0.05) = 0.044
+    # 6. Model exp_inflation = 0.0 + 0.3 * (0.10 - 0.0) = 0.03
+
+    assert math.isclose(model.exp_nominal_rate, 0.044, abs_tol=1e-5)
+    assert math.isclose(model.exp_inflation, 0.03, abs_tol=1e-5)
+
+    firm = model.schedule.firms[0]
+    bank = model.schedule.banks[0]
+    assert math.isclose(firm.exp_nominal_rate, 0.044, abs_tol=1e-5)
+    assert math.isclose(bank.exp_inflation, 0.03, abs_tol=1e-5)
