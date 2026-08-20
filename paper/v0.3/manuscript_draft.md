@@ -1,0 +1,469 @@
+# Central Money, Decentralized Credit Prices: Allocation, Shock Transmission, and Liquidity Backstops in a Calibrated Agent-Based Economy
+
+## Abstract
+
+Can retail credit prices be decentralized while the currency and settlement
+asset remain centralized? We study this institutional separation in a
+stock-flow-consistent agent-based economy with heterogeneous firms, competing
+banks, a common unit of account, interbank settlement, emergency liquidity, and
+explicit bank resolution. The treatment changes the sensitivity of loan quotes
+to borrower and bank state rather than imposing a mechanical average-rate gap.
+Bank populations and financial parameters are disciplined using US bank and
+small-business lending data from 2022–2024, with 2025 used for out-of-sample
+validation subject to a disclosed model-selection limitation. In 809 matched
+confirmatory seeds, market pricing raises credit-weighted borrower productivity
+by 0.075 model units but raises the unfunded-demand share by 0.493. Thus,
+stronger local risk pricing improves selection on the intensive margin while
+substantially contracting the extensive margin. Following a positive demand
+shock, the market regime reduces cumulative new-credit and output responses by
+0.145 and 0.351 model units, respectively. Reserve abundance and facility design
+materially alter relative credit and unresolved-liquidity outcomes. Ablations
+and local sensitivity identify borrower-risk pricing as the central mechanism;
+global stress tests show that the shock-transmission result is conditional, not
+universal. A secondary DeepSeek R1 8B exercise completes 30 matched pairs with
+900 valid calls and broadly reproduces higher market-state loan rates. The
+results characterize an institutional tradeoff, not an optimal monetary-policy
+ranking.
+
+## 1. Introduction
+
+Debates over market-determined interest rates often bundle together several
+institutions that need not move together. The unit of account may be public;
+the settlement asset may be issued by a central monetary authority; commercial
+banks may create deposit liabilities through lending; and the price and
+allocation of an individual loan may nevertheless respond to local borrower and
+bank information. Treating this entire arrangement as either “centralized” or
+“decentralized” hides the mechanism of interest. This paper separates the
+centralization of money and settlement from the decentralization of retail
+credit pricing.
+
+We ask three narrower questions. First, when loan quotes respond more strongly
+to borrower leverage and bank funding conditions, does credit move toward more
+productive firms, and how much additional demand goes unfunded? Second, how
+does that pricing institution change the propagation of a positive aggregate
+demand shock? Third, how do reserve abundance and emergency-liquidity design
+condition the answer? These questions concern pricing, allocation, settlement,
+and institutional dependence. They do not ask whether a model-generated rate
+is the optimal policy rate for the United States.
+
+The model is a controlled computational laboratory. Thirty heterogeneous firms
+interact with five banks over 24 quarterly periods in the confirmatory design.
+Firms request loans with a quantity, maturity, purpose, expected return, and
+maximum acceptable rate. Banks return partial offers containing an approved
+quantity and a complete pricing decomposition. Firms accept compatible offers
+from cheapest upward subject to a lender-concentration limit. Credit funds both
+working capital and productive investment. Production, sales, inventories,
+loan servicing, payment settlement, liquidity support, default, recovery, and
+bank resolution change explicit balance sheets. The monetary authority issues
+the settlement asset and can provide emergency liquidity or resolution capital,
+but it does not select the borrower-specific market-regime loan quote.
+
+The comparison has two regimes. Under administered pricing, the benchmark is a
+policy rate plus a calibrated spread and only one quarter of local funding,
+risk, liquidity, capital, and inflation components passes into the quote. Under
+market pricing, the benchmark is the required real return plus a calibrated
+intercept and local components pass through fully. The intercepts are aligned
+so that the experiment does not mechanically encode a mean-rate treatment. The
+economic treatment is the information sensitivity of the price.
+
+The paper makes four contributions. First, it provides an institutional
+decomposition: centralized money is compatible with decentralized loan-price
+formation. Second, it measures the joint allocation and quantity consequences
+of that decomposition using requested, offered, accepted, and unfunded
+principal rather than treating a rate coefficient as the economic result.
+Third, it embeds the credit market in explicit production and settlement blocks
+and estimates how reserves and backstops interact with the pricing institution.
+Fourth, it applies an unusually strict evidence workflow for a computational
+model: empirical source hashes, deterministic calibration, a disclosed
+validation gate, pilot-based power, independent matched seeds, immutable event
+ledgers, exact consolidation checks, and generated paper assets.
+
+The main result is a tradeoff. Market pricing raises credit-weighted borrower
+productivity by 0.0751, but raises the average unfunded-demand share by 0.4932.
+The market regime therefore selects more productive recipients among firms that
+receive credit while denying much more requested credit overall. It is not
+correct to call this an unqualified efficiency improvement. Following the
+positive demand shock, market pricing produces a 0.1445 smaller cumulative
+credit impulse and a 0.3512 smaller output impulse. These effects are precisely
+estimated in the confirmatory design but small relative to the total positive
+response. Borrower-risk pricing is the central mechanism: removing it nearly
+eliminates the H2 and H3 contrasts.
+
+Institutional support matters. At low reserves with no emergency facility, the
+two regimes differ in both cumulative credit and unresolved settlement
+shortfalls. High reserves or a penalty facility remove unresolved shortfalls at
+the declared anchor cells, while the relative credit effect persists. The
+proper conclusion is not that scarce liquidity is desirable. It is that a
+credit-pricing institution cannot be evaluated independently of the settlement
+and backstop architecture supporting it.
+
+Robustness results discipline the scope of these conclusions. Population and
+bank-count variations preserve H2. A corrected, separately frozen concentration
+addendum preserves the H2 signs under low and high opening deposit
+concentration. A ±10 percent local sensitivity design preserves the H3 credit
+and output signs in 12 of 13 parameter sets; a modest reduction in the
+borrower-risk coefficient moves both estimates slightly above zero. An extreme
+global stress map contains many sign reversals. The calibrated H3 finding is
+therefore a local institutional result, not a theorem about all possible
+economies.
+
+The rest of the paper presents the literature and institutional contribution,
+defines the model, describes data and calibration, states the frozen
+experimental design, reports H2/H3/H7, and discusses robustness, the bounded LLM
+exercise, limitations, and implications.
+
+## 2. Related literature and contribution
+
+The paper connects credit rationing, bank-mediated macroeconomic models,
+agent-based computational economics, monetary implementation, and emerging LLM
+agent methods. Stiglitz and Weiss (1981) established that loan-market clearing
+need not occur solely through an interest rate when borrower risk and
+information are imperfect. Our object differs from the canonical theoretical
+problem: borrower state is observable to the programmed bank, and the
+experiment varies how strongly that state enters the quote. Rationing remains
+central because a higher quote can exceed expected project return and because
+bank capital and lender concentration limit quantities.
+
+Multi-bank artificial credit-market models study relationship lending,
+supervision, and quantity allocation. Macro-financial agent-based models link
+bank balance sheets to firm production and aggregate fluctuations. Our closest
+point of departure is this decentralized bank-firm matching tradition. The
+increment is to isolate the rate institution while retaining a centralized
+currency and settlement system, log the complete quote decomposition, and
+predeclare allocation and rationing as primary outcomes.
+
+The study also belongs to the computational-laboratory view of agent-based
+economics. Heterogeneous state and local interaction produce aggregate outcomes
+that generally lack a convenient closed form. This flexibility creates a
+corresponding burden: the researcher must show that results are not accidents
+of code, seed choice, hidden accounting residuals, or post-result tuning. We
+therefore treat independent simulation seeds as the sampling unit, separate
+pilot and confirmatory namespaces, record every event in normalized tables, and
+publish adverse and sign-reversing robustness results.
+
+Finally, recent work uses language models as economic agents. We do not make
+LLM behavior the identification strategy. A small local DeepSeek model is used
+only to ask whether bounded decisions under identical institutional states
+display qualitatively comparable regime differences. The core claims continue
+to rest on transparent rule agents, for which every behavioral coefficient and
+mechanism switch is inspectable.
+
+## 3. The model
+
+### 3.1 Agents, timing, and accounting
+
+The main economy contains firms indexed by (i=1,\ldots,30), banks indexed by
+(b=1,\ldots,5), one aggregate household/capital-goods supplier, and a monetary
+authority. Wages and the goods price are normalized to one. The horizon is 24
+periods. A period proceeds through pending bank resolution, production,
+incumbent-loan servicing, new-credit clearing, goods-market clearing,
+experimental-loan servicing, deposit-funding reallocation, settlement-liquidity
+clearing, reserve-buffer management, reserve remuneration, insolvency marking,
+and event recording.
+
+The accounting identities are checked after every period. Household plus firm
+deposits equal bank deposit liabilities. Firm debt equals bank customer loans.
+Interbank assets and liabilities, authority money creation, emergency lending,
+and resolution injections are separately recorded. These are executable model
+conditions: a violation fails the run rather than becoming an unexplained
+residual.
+
+### 3.2 Production, demand, and firm finance
+
+Firm (i)'s output is
+
+\[
+Y_{it}=A_i S_t K_{it}^{\alpha}L_{it}^{1-\alpha},
+\]
+
+where (A_i) is firm productivity, (S_t) is a productivity-shock multiplier,
+(K_{it}) is productive capital, and (L_{it}) is labor financed from deposits
+and available working capital. Capital depreciates before production at rate
+(\delta). New accepted credit is divided between working capital and
+investment using a calibrated or declared investment share. Investment is a
+deposit transfer to the household/capital-goods supplier and an equal addition
+to firm real capital; it is not free net worth.
+
+Expected project return equals the common expected-return parameter multiplied
+by firm productivity and the current demand-shock multiplier. Desired credit is
+base demand plus a return-gap component, again multiplied by the demand shock,
+and capped by a leverage constraint. Applications carry the desired principal,
+19-period calibrated maturity, mixed purpose, expected return, and maximum
+acceptable rate.
+
+Household planned consumption is bounded by deposits and depends on current
+labor/capital income and lagged deposit wealth. Actual consumption is the
+minimum of planned expenditure, available goods, and household deposits. Sales
+are allocated in proportion to each firm's available inventory. Unsold output
+and unmet consumption remain explicit.
+
+### 3.3 Loan pricing and clearing
+
+Let (z_{ibt}) collect local funding, borrower-risk, liquidity, capital, and
+inflation components for firm (i) and bank (b). The offered nominal rate is
+
+\[
+r_{ibt}=q_j+s_j+\lambda_j z_{ibt}+\eta_{ib},
+\]
+
+where (j\in\{A,M\}) denotes administered or market pricing and (\eta_{ib})
+is a fixed relationship component generated from the matching seed. More
+explicitly,
+
+\[
+z_{ibt}=f_{bt}+\gamma_{risk}\max(0,\ell_{it})
++\gamma_{liq}\max(0,\bar{m}-m_{bt})
++\gamma_{cap}\max(0,\bar{k}-k_{bt})
++\gamma_{\pi}\max(0,\pi^e_{bt}).
+\]
+
+The administered benchmark (q_A) is the policy rate, (s_A) is the calibrated
+administered spread, and (\lambda_A=0.25). The market benchmark (q_M) is the
+required real return, (s_M) is the calibrated market intercept, and
+(\lambda_M=1). The funding term increases when loans exceed the deposit target
+or the bank uses costly reserve/interbank funding. Intercepts are calibrated to
+avoid an imposed baseline mean-rate gap.
+
+An active bank offers up to the lesser of requested credit and its residual
+regulatory-capital capacity. It rejects when inactive, already in unresolved
+liquidity failure, out of regulatory capacity, or when its quote exceeds the
+firm's expected return. The firm sorts feasible offers by price and accepts
+from cheapest upward until demand is filled or the lender-concentration limit
+binds. This produces direct measures of requested, approved, accepted, and
+unfunded quantities.
+
+### 3.4 Loans, liquidity, and resolution
+
+Experimental loans amortize linearly. Interest uses the annual nominal rate
+converted to the quarterly model frequency. If deposits cannot meet scheduled
+principal and interest, the loan defaults. Recovery first records cash/deposit
+payment and then a fixed fraction of remaining productive capital; the residual
+is written off against bank profit. Incumbent empirical loan stocks are assigned
+as firm liabilities and rolled using calibrated growth rates, avoiding an
+unbacked opening bank asset.
+
+Payments are final. Cross-bank transfers change reserves. At the end of the
+period, banks below the settlement floor borrow first in the interbank market.
+Remaining need may be met by an unavailable, limited, or penalty emergency
+facility depending on the scenario. Any residual is an unresolved liquidity
+shortfall; earlier payments are not reversed.
+
+A bank with negative equity enters resolution and cannot make new offers. After
+one period, the authority injects the amount needed to restore the regulatory
+capital ratio. The injection increases reserves, equity, base money, and a
+reported resolution-cost variable. Emergency liquidity and solvency resolution
+are therefore distinct contracts.
+
+## 4. Data and calibration
+
+Bank balance-sheet and income information comes from public FDIC Call Report
+bulk files. Business-loan rates, amounts, maturities, standards, applicant
+quality, and demand use the Federal Reserve FR 2028D Small Business Lending
+Survey, with Financial Accounts and H.8/FRED series used as aggregate checks.
+Nominal loan amounts are converted to constant 2025Q4 prices for empirical
+processing; the simulation itself uses normalized model units.
+
+The estimation sample covers 2022Q1–2024Q4. Eligible observations are active,
+domestically chartered, FDIC-insured commercial banks with positive assets,
+deposits, loans, and equity. Impossible values are removed before 1st/99th
+percentile winsorization within quarter and size stratum. The pipeline preserves
+equal-bank and asset-weighted moments, logs exclusions and missingness, and
+fails on checksum changes, missing quarters, duplicate bank-quarter keys,
+accounting impossibilities, or unrecognized field drift.
+
+Bank populations are initialized by joint empirical resampling of assets,
+deposits, loans, liquid assets, equity, C&I share, growth, and charge-off state.
+The median sampled bank's deposits are normalized to 100 model units while
+ratios and cross-sectional dependence are preserved. We target capital/assets,
+loans/deposits, liquidity/deposits, C&I share, deposit and loan growth,
+charge-offs, loan amount and maturity, and effective-rate/spread moments.
+
+Calibration minimizes variance-standardized moment errors using 200
+bank-cluster bootstrap draws and ten recorded differential-evolution starts.
+The accepted bundle has normalized RMSE 0.161, below the 0.25 gate. Seven of
+eight 2025 validation groups fall within empirical 95% bootstrap intervals and
+none is more than two standard errors away.
+
+This validation evidence has an important qualification. A preserved candidate
+first placed six of eight groups inside their intervals. The accepted bundle
+was written after that result was inspected and includes a slightly revised
+administered spread plus additional transition parameters. We therefore call
+2025 an out-of-sample validation period used with an acceptance gate, not a
+pristine untouched holdout. A later frozen data vintage would be required for a
+fully independent external test.
+
+## 5. Hypotheses and experimental design
+
+H2a is a manipulation check: market quotes should exhibit stronger local-state
+pass-through. H2b predicts changes in credit-weighted productivity and the
+unfunded-demand share. H3 predicts that, under the recent-US calibration, market
+pricing dampens the positive demand shock's cumulative new-credit and output
+responses. H7 predicts that reserve abundance and facility generosity interact
+with the pricing regime in cumulative credit and unresolved liquidity.
+
+The confirmatory main design includes baseline and positive demand-shock
+scenarios, two regimes, and 809 matched seeds. The shock begins in period 8,
+lasts four periods, and raises demand by 25 percent. Cumulative responses use
+periods 8–23. H7 crosses five reserve anchors, four facility settings, two
+regimes, and 40 matched seeds. Mechanism ablations, topology cells, and 100
+Latin-hypercube stress sets are robustness exercises. The frozen design totals
+8,096 rule runs.
+
+Inference is across independent seeds, never agent-period rows. H2 uses matched
+market-minus-administered seed differences. H3 uses a matched difference in
+differences: market shock minus market baseline, less administered shock minus
+administered baseline. H7 uses predeclared interaction contrasts. Confidence
+intervals use 10,000 percentile bootstrap draws resampling matched seeds. Holm
+correction is applied within each two-outcome primary family.
+
+## 6. Results
+
+### 6.1 H2: selection and rationing
+
+The manipulation check succeeds. Full rather than attenuated pass-through
+raises the local-state pass-through coefficient by 0.75. The slope of quoted
+rates on borrower leverage is 0.02145 higher in the market regime (95% interval
+[0.02128, 0.02163]). This confirms the treatment but is not itself a welfare
+result.
+
+Market pricing raises credit-weighted borrower productivity by 0.07511 among
+804 matched pairs with positive credit in both regimes (95% interval [0.07206,
+0.07821], Holm-adjusted p approximately 0.0002). Mean levels are 1.07546 under
+administered pricing and 1.15104 under market pricing. Five of 809 market runs
+originate no new credit, making a credit-weighted productivity statistic
+undefined; those observations are disclosed rather than assigned artificial
+values.
+
+The allocation gain comes with severe quantity contraction. The mean
+unfunded-demand share rises by 0.49318 (95% interval [0.48349, 0.50281],
+Holm-adjusted p approximately 0.0002), from 0.03812 under administered pricing
+to 0.53130 under market pricing. Quoted-rate dispersion rises by 0.00496 and the
+leverage gradient of rationing rises by 0.39114. H2 therefore documents a
+selection-versus-quantity tradeoff: credit recipients are more productive, but
+far less requested credit is funded.
+
+Baseline defaults and write-offs are zero in both regimes. The experiment
+cannot identify relative default performance in the calibrated baseline.
+Output per unit of new credit is mechanically high in the market regime because
+new credit can approach zero, so it remains secondary and is not interpreted as
+a welfare statistic.
+
+### 6.2 H3: demand-shock transmission
+
+The positive demand shock raises cumulative new credit by 4.00691 under
+administered pricing and 3.86237 under market pricing. The matched
+difference-in-differences is -0.14454 (95% interval [-0.21664, -0.07107],
+Holm-adjusted p approximately 0.0003). This is approximately 3.6 percent of the
+administered credit impulse.
+
+The administered output impulse is 30.86338, compared with 30.51219 under
+market pricing. The difference is -0.35119 (95% interval [-0.45484, -0.24840],
+Holm-adjusted p approximately 0.0002), approximately 1.1 percent of the
+administered output impulse. H3 is supported at the calibration: stronger local
+pricing modestly dampens the positive shock rather than reversing it.
+
+The borrower-risk-pricing ablation nearly eliminates both H3 effects. In the
+corrected local sensitivity design, 12 of 13 ±10 percent parameter sets retain
+negative credit and output signs. Reducing risk pricing by 10 percent produces
+small positive estimates with intervals spanning zero; raising it strengthens
+dampening. The global stress map contains many reversals. These results identify
+the mechanism and the boundary simultaneously: H3 is locally stable across
+most examined parameters but depends on sufficiently strong borrower-risk
+pricing.
+
+### 6.3 H7: reserves and backstops
+
+At low reserves with an unavailable facility, market pricing produces 8.59854
+less cumulative credit than administered pricing and 0.73728 less unresolved
+liquidity shortfall. At high reserves without a facility, unresolved shortfalls
+are zero in both regimes and the market credit gap is -12.25852. At low reserves
+with a penalty facility, shortfalls are again zero and the credit gap is
+-11.73893.
+
+Moving from high to low reserves when the facility is unavailable changes the
+market-versus-administered credit contrast by +3.65998 and its liquidity
+contrast by -0.73728. Replacing a penalty facility with no facility at low
+reserves changes the credit contrast by +3.14039 and the liquidity contrast by
+-0.73728. All four declared intervals exclude zero after within-comparison Holm
+correction.
+
+The liquidity sign must not be read as a general advantage of the market
+regime. It occurs in the anchor where unresolved shortfalls exist, and it partly
+reflects the market regime's smaller credit volume. H7's contribution is that
+reserve and facility settings materially condition the relative regime effect.
+
+### 6.4 Topology, concentration, and LLM robustness
+
+The H2 signs survive 30-firm/three-bank, 30/5, and 100/5 population checks. The
+original concentration cells were invalid because empirical initialization
+bypassed the switch. They remain archived. A separately frozen 150-run
+correction raises mean opening deposit HHI from 0.2012 in the low-concentration
+30/5 cell to 0.2906 in the high cell. Credit-weighted productivity effects are
+0.0659 and 0.0647, while unfunded-share effects are 0.6166 and 0.5970,
+respectively. These are within-cell regime checks, not causal estimates of
+concentration.
+
+DeepSeek R1 8B completes 30 matched pairs, with all 900 main calls valid and no
+retries. The market prompt raises the average offered rate by 0.00552 (95%
+interval [0.00383, 0.00732]) and lowers approved principal by 0.42967 (95%
+interval [-0.69898, -0.15097]). Requested principal differs by -0.43347 with an
+interval spanning zero. The exercise supports the qualitative rate response
+under bounded actions, but one small model and three prompt templates do not
+establish behavioral external validity.
+
+## 7. Discussion and limitations
+
+The findings reject a simple winner-versus-loser framing. Full local-state
+pricing directs a smaller pool of credit toward more productive firms. Whether
+that tradeoff is socially preferable depends on welfare weights, missing
+household heterogeneity, long-run entry and exit, distributional incidence, and
+the value of projects left unfunded. The current design does not supply those
+objects and therefore does not claim optimality.
+
+Several limitations are substantive. The household is aggregate. Wages and the
+goods price are normalized. The horizon is short. Production parameters are not
+identified by bank data. Baseline defaults are too rare to compare realized
+credit losses. The resolution authority recapitalizes banks transparently but
+abstracts from legal resolution regimes and contagion. The 2025 validation
+period contains model-selection leakage. Global sensitivity produces sign
+reversals, and local sensitivity identifies borrower-risk pricing as a nearby
+boundary. Finally, the LLM exercise is small and prompt-conditioned.
+
+These limits sharpen rather than erase the contribution. The evidence supports
+a precise conditional statement: in this calibrated institutional model,
+stronger borrower- and bank-state pass-through changes who receives credit,
+substantially increases rationing, slightly dampens a positive demand shock, and
+interacts with settlement liquidity and backstop design.
+
+## 8. Conclusion
+
+Centralized money does not logically require centrally administered retail
+credit prices. In the simulated economy studied here, decentralizing the local
+information content of loan quotes produces a measurable selection-versus-
+quantity tradeoff. Funded credit shifts toward more productive borrowers while
+roughly half more requested credit remains unfunded. Demand-shock transmission
+is modestly dampened at the recent-US calibration, and the result depends on
+borrower-risk pricing. Reserve abundance and emergency facilities materially
+change relative credit and liquidity outcomes.
+
+The policy lesson is institutional rather than prescriptive. Credit-pricing
+rules, settlement assets, prudential capacity, and liquidity backstops form a
+joint system. Changing one element while holding the others implicit can
+misstate the mechanism. Future work should add heterogeneous households,
+endogenous entry and bank competition, a longer default cycle, empirically
+identified production parameters, and a truly untouched validation vintage.
+
+## References to complete before submission
+
+- Ashraf, Q., Gershman, B., and Howitt, P. “Banks, Market Organization, and
+  Macroeconomic Performance: An Agent-Based Computational Analysis.”
+- Dosi, G., and Roventini, A. “Macroeconomic Policy in DSGE and Agent-Based
+  Models Redux.”
+- Hendry et al. “Agent-Based Modeling at Central Banks: Recent Developments and
+  New Challenges.”
+- Neuner et al. “Agent-Based Modeling of Long-Term Bank Credit: Buffer Policies
+  vs. Selective Lending in Stochastic Growth and Decline.”
+- Stiglitz, J. E., and Weiss, A. “Credit Rationing in Markets with Imperfect
+  Information.”
+- Zhang, Y., Xiong, X., Zhang, W., and Liu, X. “Credit Rationing and the
+  Simulation of Multi-Bank Credit Market Model.”
