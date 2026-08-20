@@ -1,0 +1,83 @@
+specification_id: v0.3
+calibration_id: recent-us-2022q1-2024q4
+parameter_set_id: baseline-calibrated
+scenario_id: h2_h3_baseline
+rate_regimes: [administered, market]
+behavior_mode: rule
+parameters:
+  n_firms: 30
+  n_banks: 5
+  horizon: 24
+  deposit_concentration: empirical
+  initial_firm_deposits: 20.0
+  initial_firm_capital: 20.0
+  initial_household_deposits: 100.0
+  initial_bank_deposits: 100.0
+  initial_bank_reserves: 25.0
+  initial_bank_equity: 12.0
+  wage: 1.0
+  goods_price: 1.0
+  production_alpha: 0.35
+  capital_depreciation: 0.025
+  investment_share: 0.35
+  baseline_labor_demand: 4.0
+  marginal_propensity_consume_income: 0.80
+  marginal_propensity_consume_wealth: 0.03
+  base_credit_demand: 12.0
+  demand_return_sensitivity: 25.0
+  expected_project_return: 0.10
+  loan_maturity: 8
+  periods_per_year: 4
+  max_lender_share: 0.60
+  borrower_leverage_limit: 3.0
+  legacy_loan_growth_rate: 0.011
+  legacy_ci_loan_growth_rate: 0.005
+  legacy_book_rate: 0.075
+  bank_income_retention_rate: 0.15
+  policy_rate: 0.04
+  required_real_return: 0.015
+  administered_spread: 0.025
+  administered_pass_through: 0.25
+  market_intercept: 0.035
+  risk_price: 0.020
+  liquidity_price: 0.015
+  liquidity_target_ratio: 0.08
+  liquidity_adjustment_speed: 0.13
+  loan_deposit_target: 0.80
+  deposit_reallocation_speed: 0.25
+  deposit_funding_price: 0.03
+  capital_price: 0.010
+  inflation_pass_through: 1.0
+  quote_dispersion: 0.002
+  reserve_requirement: 0.0
+  reserve_remuneration_rate: 0.04
+  capital_requirement: 0.08
+  risk_weight: 1.0
+  emergency_facility: penalty
+  emergency_limit_equity: 1.0
+  emergency_penalty_spread: 0.02
+  interbank_maturity: 1
+  resolution_delay: 1
+  collateral_recovery_rate: 0.25
+  deposit_recovery_rate: 1.0
+  default_equity_threshold: 0.0
+mechanisms:
+  borrower_risk_pricing: true
+  liquidity_pricing: true
+  capital_pricing: true
+  inflation_pass_through: true
+  interbank_market: true
+  emergency_facility: true
+  bank_competition: true
+  credit_to_production: true
+shocks: []
+replications: 100
+seed_namespace: confirmatory-v0.3
+required_outcomes:
+  - credit_weighted_productivity
+  - unfunded_demand_share
+  - cumulative_new_credit
+  - cumulative_output
+  - unresolved_liquidity_shortfall
+failure_policy: fail_fast
+frozen: false
