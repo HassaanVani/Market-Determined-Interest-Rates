@@ -1,0 +1,218 @@
+{
+  "acceptance_status": "passed",
+  "best": {
+    "evaluations": 2500,
+    "normalized_rmse": 0.16100084738673004,
+    "objective": 0.02592127285924514,
+    "parameters": {
+      "administered_spread": 0.024723399885883873,
+      "bank_income_retention_rate": 0.1150352141130006,
+      "base_credit_demand": 0.07787108166985353,
+      "demand_return_sensitivity": 0.0,
+      "deposit_reallocation_speed": 1.0,
+      "legacy_book_rate": 0.07358640306351304,
+      "legacy_ci_loan_growth_rate": -0.05368959050888802,
+      "legacy_loan_growth_rate": 0.010912186027377077,
+      "liquidity_adjustment_speed": 0.28755473708065166,
+      "loan_deposit_target": 0.793989391128901,
+      "loan_maturity": 19,
+      "market_intercept": 0.033586397854689636,
+      "policy_rate": 0.0394910049370919,
+      "reserve_remuneration_rate": 0.0394910049370919,
+      "reserve_requirement": 0.0,
+      "risk_price": 0.02956036298109435
+    },
+    "start_seed": 34002
+  },
+  "holdout": {
+    "groups_inside": 7,
+    "intervals": {
+      "business_loan_terms": [
+        0.07678901911990893,
+        0.0010909365503365706,
+        0.07465078348124925,
+        0.07892725475856861
+      ],
+      "capital_assets": [
+        0.10091916976063382,
+        0.00042917685869115033,
+        0.09995279587285884,
+        0.10163476216326778
+      ],
+      "ci_chargeoff_rate": [
+        0.0,
+        1e-12,
+        0.0,
+        0.0
+      ],
+      "ci_share": [
+        0.0962232831938669,
+        0.0013702338718194493,
+        0.09404728718386828,
+        0.09912336762721465
+      ],
+      "deposit_growth": [
+        0.009280003284070193,
+        0.0002489515868969579,
+        0.008745884677672516,
+        0.00971336673822013
+      ],
+      "liquid_deposits": [
+        0.07522485086346872,
+        0.0011304185940498462,
+        0.07307224798197413,
+        0.07795442344315297
+      ],
+      "loan_growth": [
+        0.013005550528068732,
+        0.00029922825105203416,
+        0.012434276959280266,
+        0.013504885147944273
+      ],
+      "loans_deposits": [
+        0.7985400040154595,
+        0.0039457504298192544,
+        0.791061875700965,
+        0.8052120727155421
+      ]
+    },
+    "outside_two_se": [],
+    "passed": true,
+    "predictions": {
+      "business_loan_terms": 0.07874436716388808,
+      "capital_assets": 0.10120305366540061,
+      "ci_chargeoff_rate": 0.0,
+      "ci_share": 0.09696676634027675,
+      "deposit_growth": 0.0094452000356815,
+      "liquid_deposits": 0.07626075993885509,
+      "loan_growth": 0.013594897245901016,
+      "loans_deposits": 0.7976813990741168
+    },
+    "total_groups": 8
+  },
+  "starts": [
+    {
+      "evaluations": 2315,
+      "normalized_rmse": 0.1610008473874804,
+      "objective": 0.025921272859486755,
+      "parameters": {
+        "base_credit_demand": 0.07787108259075116,
+        "loan_maturity": 18.647137350106835,
+        "market_intercept": 0.033586397487309703,
+        "risk_price": 0.029560360880952014
+      },
+      "start_seed": 34000
+    },
+    {
+      "evaluations": 2370,
+      "normalized_rmse": 0.1610008473874224,
+      "objective": 0.025921272859468082,
+      "parameters": {
+        "base_credit_demand": 0.07787107699913909,
+        "loan_maturity": 19.377535674101058,
+        "market_intercept": 0.03358639784695819,
+        "risk_price": 0.02956036414920891
+      },
+      "start_seed": 34001
+    },
+    {
+      "evaluations": 2500,
+      "normalized_rmse": 0.16100084738673004,
+      "objective": 0.02592127285924514,
+      "parameters": {
+        "base_credit_demand": 0.07787108166985353,
+        "loan_maturity": 19.27094973488906,
+        "market_intercept": 0.033586397854689636,
+        "risk_price": 0.02956036298109435
+      },
+      "start_seed": 34002
+    },
+    {
+      "evaluations": 2010,
+      "normalized_rmse": 0.16100085281733004,
+      "objective": 0.025921274607907566,
+      "parameters": {
+        "base_credit_demand": 0.07787174371888461,
+        "loan_maturity": 18.76404593738474,
+        "market_intercept": 0.03358638137742055,
+        "risk_price": 0.029560369964642386
+      },
+      "start_seed": 34003
+    },
+    {
+      "evaluations": 2310,
+      "normalized_rmse": 0.16100084739113896,
+      "objective": 0.025921272860664812,
+      "parameters": {
+        "base_credit_demand": 0.07787108272328971,
+        "loan_maturity": 18.682001053182926,
+        "market_intercept": 0.033586396556277015,
+        "risk_price": 0.0295603558917887
+      },
+      "start_seed": 34004
+    },
+    {
+      "evaluations": 2490,
+      "normalized_rmse": 0.16100084755242586,
+      "objective": 0.02592127291259947,
+      "parameters": {
+        "base_credit_demand": 0.07787099961754679,
+        "loan_maturity": 19.311175802920136,
+        "market_intercept": 0.033586410103361684,
+        "risk_price": 0.029560324153231364
+      },
+      "start_seed": 34005
+    },
+    {
+      "evaluations": 2195,
+      "normalized_rmse": 0.16100084738758644,
+      "objective": 0.0259212728595209,
+      "parameters": {
+        "base_credit_demand": 0.0778710812771455,
+        "loan_maturity": 18.54314071889256,
+        "market_intercept": 0.033586398045284266,
+        "risk_price": 0.029560359703394525
+      },
+      "start_seed": 34006
+    },
+    {
+      "evaluations": 2260,
+      "normalized_rmse": 0.16100084738752576,
+      "objective": 0.02592127285950136,
+      "parameters": {
+        "base_credit_demand": 0.07787108128852241,
+        "loan_maturity": 19.401342374141503,
+        "market_intercept": 0.033586398062265876,
+        "risk_price": 0.029560359807985895
+      },
+      "start_seed": 34007
+    },
+    {
+      "evaluations": 2135,
+      "normalized_rmse": 0.16100084738757933,
+      "objective": 0.025921272859518608,
+      "parameters": {
+        "base_credit_demand": 0.07787107747768472,
+        "loan_maturity": 18.948444868628194,
+        "market_intercept": 0.03358639887248598,
+        "risk_price": 0.029560359771402145
+      },
+      "start_seed": 34008
+    },
+    {
+      "evaluations": 2075,
+      "normalized_rmse": 0.16100084738752166,
+      "objective": 0.025921272859500036,
+      "parameters": {
+        "base_credit_demand": 0.07787108128625055,
+        "loan_maturity": 19.126063847029585,
+        "market_intercept": 0.03358639806351795,
+        "risk_price": 0.02956035981584384
+      },
+      "start_seed": 34009
+    }
+  ],
+  "success_threshold": {
+    "normalized_rmse_lte": 0.25
+  }
+}

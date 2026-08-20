@@ -1,0 +1,24 @@
+schema_version: "0.3"
+units: thousands_of_nominal_dollars
+call_report_aliases:
+  bank_id: [bank_id, CERT, cert]
+  quarter: [quarter, REPDTE, repdte]
+  active: [active, ACTIVE]
+  domestic_charter: [domestic_charter, DOMESTIC]
+  fdic_insured: [fdic_insured, INSURED]
+  commercial_bank: [commercial_bank, COMMERCIAL]
+  assets: [assets, ASSET]
+  deposits: [deposits, DEP]
+  gross_loans: [gross_loans, LNLSGR]
+  liquid_assets: [liquid_assets, CHBAL]
+  equity: [equity, EQ]
+  ci_loans: [ci_loans, LNCI]
+  ci_chargeoffs: [ci_chargeoffs, NTCI]
+derived_variables:
+  capital_assets: equity / assets
+  loans_deposits: gross_loans / deposits
+  liquid_deposits: liquid_assets / deposits
+  ci_share: ci_loans / gross_loans
+  ci_chargeoff_rate: ci_chargeoffs / ci_loans
+  deposit_growth: within-bank quarterly percent change in deposits
+  loan_growth: within-bank quarterly percent change in gross loans

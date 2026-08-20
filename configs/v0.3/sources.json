@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.3",
+  "sources": [
+    {
+      "source_id": "fdic-bankfind-financials",
+      "landing_page": "https://banks.data.fdic.gov/bankfind-suite/bulkData/bulkDataDownload",
+      "api_documentation": "https://api.fdic.gov/banks/docs",
+      "coverage": "2022Q1-2025Q4",
+      "purpose": "Bank-level balance sheets and income"
+    },
+    {
+      "source_id": "fr-2028d-sbls",
+      "landing_page": "https://www.federalreserve.gov/apps/reportingforms/Report/Index/FR_2028D",
+      "coverage": "2022Q1-2025Q4",
+      "purpose": "Business-loan rates, amounts, maturities, standards, applicant quality, and demand"
+    },
+    {
+      "source_id": "fred-cpi-aucs",
+      "landing_page": "https://fred.stlouisfed.org/series/CPIAUCSL",
+      "coverage": "2022-01 through 2025-12",
+      "purpose": "Deflation to 2025Q4 dollars"
+    },
+    {
+      "source_id": "fred-bank-prime-rate",
+      "landing_page": "https://fred.stlouisfed.org/series/DPRIME",
+      "coverage": "2022-01 through 2025-12",
+      "purpose": "Policy/prime spread construction"
+    },
+    {
+      "source_id": "fred-effective-federal-funds-rate",
+      "landing_page": "https://fred.stlouisfed.org/series/DFF",
+      "coverage": "2022-01 through 2025-12",
+      "purpose": "Administered benchmark path"
+    },
+    {
+      "source_id": "federal-reserve-h8-z1",
+      "landing_page": "https://www.federalreserve.gov/releases/h8/",
+      "coverage": "2022Q1-2025Q4",
+      "purpose": "Aggregate cross-checks only"
+    }
+  ]
+}
