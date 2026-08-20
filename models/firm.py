@@ -1,13 +1,14 @@
 from pydantic import BaseModel, Field
 import mesa
-import instructor
 from openai import AsyncOpenAI
+from engine.experiment import BehaviorMode
+from engine.llm_runtime import call_structured_llm
 
 
 # Pydantic schema for Firm's credit demand
 class FirmCreditDemand(BaseModel):
-    chain_of_thought: str = Field(
-        ..., description="The reasoning behind the credit request"
+    decision_rationale: str = Field(
+        ..., description="A concise economic rationale for the credit request"
     )
     loan_principal_requested: float = Field(
         ..., description="The amount of money requested as a loan"
@@ -16,6 +17,14 @@ class FirmCreditDemand(BaseModel):
         ...,
         description="The maximum nominal interest rate the firm is willing to accept (as a decimal, e.g. 0.05 for 5%)",
     )
+    decision_status: str = Field(
+        default="economic",
+        description="Whether this is an economic decision or an LLM infrastructure failure",
+    )
+
+    @property
+    def chain_of_thought(self):
+        return self.decision_rationale
 
 
 class FirmAgent(mesa.Agent):
@@ -25,13 +34,15 @@ class FirmAgent(mesa.Agent):
         super().__init__(model)
         self.unique_id = unique_id
         self.risk_profile = risk_profile
-        # Using instructor to patch the AsyncOpenAI client
-        self.client = instructor.from_openai(client, mode=instructor.Mode.MD_JSON)
+        self.client = client
 
         # State variables
         self.current_balance: float = 100.0  # Initial equity
         self.current_debt: float = 0.0
         self.equity: float = 100.0  # Assumes current_balance is purely equity initially
+        self.deposit_bank_id: str | None = None
+        self.productivity: float = 1.0
+        self.working_capital_budget: float = 0.0
 
         # Expectation trackers (adaptive expectations)
         self.exp_inflation: float = 0.0
@@ -40,6 +51,9 @@ class FirmAgent(mesa.Agent):
         # Temporary storage for current step's demand
         self.current_demand: FirmCreditDemand | None = None
 
+    def update_equity(self):
+        self.equity = self.current_balance - self.current_debt
+
     def get_compact_memory(self):
         """
         Compresses active memory into a lean dictionary avoiding raw transaction strings.
@@ -47,19 +61,22 @@ class FirmAgent(mesa.Agent):
         return {
             "current_balance": self.current_balance,
             "current_debt": self.current_debt,
+            "working_capital_budget": self.working_capital_budget,
+            "deposit_bank_id": self.deposit_bank_id,
             "realized_inflation": self.model.realized_inflation,
             "three_step_yield_trend": self.model.three_step_yield_trend,
             "sentiment": getattr(self.model, "agent_sentiment", "neutral"),
             "risk_profile": self.risk_profile,
             "exp_inflation": self.exp_inflation,
             "exp_nominal_rate": self.exp_nominal_rate,
+            "shock_effects": self.model.current_shock_effects,
         }
 
     async def strategize_credit_demand(self):
         """
         Asynchronously generates a credit demand using the local Ollama LLM or rules.
         """
-        if getattr(self.model, "control_mode", False):
+        if self.model.behavior_mode == BehaviorMode.RULE:
             # Rule-based credit demand based on risk profile and expectations
             if self.risk_profile == "risk-averse":
                 principal = max(0.0, 10.0 - 0.1 * self.current_debt)
@@ -70,9 +87,12 @@ class FirmAgent(mesa.Agent):
             else:  # neutral
                 principal = max(0.0, 20.0 - 0.2 * self.current_debt)
                 max_rate = max(0.01, self.exp_nominal_rate)
+            principal *= self.model.current_shock_effects["credit_demand_multiplier"]
 
             self.current_demand = FirmCreditDemand(
-                chain_of_thought=f"Control group: deterministic rule-based credit demand for {self.risk_profile} profile.",
+                decision_rationale=(
+                    f"Deterministic credit demand for " f"{self.risk_profile} profile."
+                ),
                 loan_principal_requested=principal,
                 max_acceptable_nominal_rate=max_rate,
             )
@@ -100,36 +120,44 @@ You are a Firm deciding how much credit to request and the maximum interest rate
 Your current state:
 Balance: {memory_state['current_balance']}
 Debt: {memory_state['current_debt']}
+Unspent Working-Capital Budget: {memory_state['working_capital_budget']}
 Realized Inflation: {memory_state['realized_inflation']}
 Three Step Yield Trend: {memory_state['three_step_yield_trend']}
 Expected Inflation: {memory_state['exp_inflation']}
 Expected Nominal Interest Rate: {memory_state['exp_nominal_rate']}{sentiment_context}{risk_context}
+Current Exogenous Shock Effects: {memory_state['shock_effects']}
 
 Based on the macroeconomic conditions, formulate a strategy.
         """
 
-        # We wrap in a try-except to handle potential LLM parsing errors
-        try:
-            demand = await self.client.chat.completions.create(
-                model=self.model.llm_model,
-                messages=[
-                    {
-                        "role": "system",
-                        "content": "You are a Firm agent in a macroeconomic simulation. Output valid JSON.",
-                    },
-                    {"role": "user", "content": prompt},
-                ],
-                response_model=FirmCreditDemand,
-                temperature=getattr(self.model, "llm_temperature", 0.7),
-            )
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "You are a Firm agent in a macroeconomic simulation. "
+                    "Output valid JSON and provide only a concise economic "
+                    "decision rationale."
+                ),
+            },
+            {"role": "user", "content": prompt},
+        ]
+        demand, error = await call_structured_llm(
+            model=self.model,
+            agent_id=self.unique_id,
+            task_type="credit_demand",
+            client=self.client,
+            messages=messages,
+            response_model=FirmCreditDemand,
+        )
+        if demand is not None:
             self.current_demand = demand
-        except Exception as e:
-            print(f"Firm {self.unique_id} failed to generate demand: {e}")
-            # Fallback demand
+        else:
+            print(f"Firm {self.unique_id} failed to generate demand: {error}")
             self.current_demand = FirmCreditDemand(
-                chain_of_thought="Fallback due to generation error.",
+                decision_rationale="LLM infrastructure failure; no economic decision.",
                 loan_principal_requested=0.0,
                 max_acceptable_nominal_rate=0.0,
+                decision_status="llm_failure",
             )
 
         return self.current_demand

@@ -10,6 +10,7 @@ class HouseholdAgent(mesa.Agent):
         self.current_balance: float = 0.0  # deposits at bank (asset)
         self.current_debt: float = 0.0  # no liabilities
         self.equity: float = 0.0  # net worth
+        self.deposit_bank_id: str | None = None
 
     def update_equity(self):
         self.equity = self.current_balance - self.current_debt
