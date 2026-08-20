@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+
+venv/
+.pytest_cache/
+
+*.sqlite
+*.sqlite3
+*.duckdb
+*.parquet
+pilot_results/
+
+# v0.3 raw/evidence products are immutable local artifacts; manifests and
+# compact reports are committed explicitly when frozen.
+data/raw/v0.3/
+data/derived/v0.3/*.parquet
+evidence/v0.3/*_shards/
+evidence/v0.3/parquet/
+evidence/v0.3/*.duckdb
+evidence/**/parquet/
+evidence/**/*_parquet/
+
+# Release bundles and full artifact manifests are reproducible local outputs.
+# Publish them as release assets rather than storing them in normal Git history.
+evidence/release/*/archived_run_manifests.json
+evidence/release/*/sha256_manifest.json
+evidence/release/*/source_snapshot.tar.gz
