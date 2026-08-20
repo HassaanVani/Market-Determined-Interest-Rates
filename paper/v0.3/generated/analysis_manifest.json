@@ -1,0 +1,69 @@
+{
+  "outputs": [
+    {
+      "bytes": 295,
+      "path": "paper/v0.3/generated/estimand_completeness.csv",
+      "sha256": "8902e5656e9e50c9534132b4feceb3ea00683a4183548a0dfe7cb2b956fbfbef"
+    },
+    {
+      "bytes": 325,
+      "path": "paper/v0.3/generated/h2_mechanism_effects.csv",
+      "sha256": "67b95eaeee743911bc18cbc6882f0ed840a97038210289beed98d1309ab2391f"
+    },
+    {
+      "bytes": 295120,
+      "path": "paper/v0.3/generated/h2_mechanism_run_summaries.csv",
+      "sha256": "c07d9ea76aa419789a2958a4340252c8be890ca93b46b1105a06a4dee239e850"
+    },
+    {
+      "bytes": 380,
+      "path": "paper/v0.3/generated/h2_primary_effects.csv",
+      "sha256": "567b80a26f4006375dce6ee94307b25766919223f8e377cbf1870ca1ca31b7bd"
+    },
+    {
+      "bytes": 229,
+      "path": "paper/v0.3/generated/h2_regime_levels.csv",
+      "sha256": "72b050e31b704f97e881677628c6e6b1631dd50d0edd28d162b2baf81227da33"
+    },
+    {
+      "bytes": 583,
+      "path": "paper/v0.3/generated/h2_secondary_effects.csv",
+      "sha256": "5f8db5a486f5aa1d2fd8b970f96ec0925d933127b32716d444ecbb987a310dc4"
+    },
+    {
+      "bytes": 380,
+      "path": "paper/v0.3/generated/h3_difference_in_differences.csv",
+      "sha256": "41d1fe533f258b29b30b51a6adf6c56620bf15261c21fb91c82cc99a54eeca0d"
+    },
+    {
+      "bytes": 418,
+      "path": "paper/v0.3/generated/h3_regime_impulses.csv",
+      "sha256": "06d39ebd10bf2916c5c07e589b5f5c0401baa5e4e5ee556b29ca81955fcf2418"
+    },
+    {
+      "bytes": 5844,
+      "path": "paper/v0.3/generated/h7_anchor_effects.csv",
+      "sha256": "61509a9be2f4cac7866ad4fa4ecb4094e1fbe363bfe08cb3f4d739dfff64369d"
+    },
+    {
+      "bytes": 843,
+      "path": "paper/v0.3/generated/h7_interaction_effects.csv",
+      "sha256": "7246a571dd767753592e67e3c85755f30ef6782db1ff5b57ab160b636ccdf456"
+    },
+    {
+      "bytes": 65391,
+      "path": "paper/v0.3/generated/main_credit_by_scenario.png",
+      "sha256": "b754ef31b62b3c51ae1f74fca984ae4e97861bef4498c3aa6ac33b4a31d247bb"
+    },
+    {
+      "bytes": 1880843,
+      "path": "paper/v0.3/generated/run_summaries.csv",
+      "sha256": "9b9247b67d763ad0777db37086f0e47ca868ef89bbd1e78a833c95be6d1c12a8"
+    },
+    {
+      "bytes": 721443,
+      "path": "paper/v0.3/generated/secondary_outcomes.csv",
+      "sha256": "9b2c6f0f8e887eb09991c0263d3b5be0c51a6f1c76a6ffb60d96087bcfb9ad77"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "archived_llm_dgp_verified": true,
+  "archived_rule_dgp_verified": true,
+  "artifacts": {
+    "README.md": {
+      "bytes": 1667,
+      "sha256": "930920a2bec985c70705f15b5fc60d6d303b3d9be5c9b6e47db7b173e11d2875"
+    },
+    "analyze_evidence.py": {
+      "bytes": 20125,
+      "sha256": "3d65ff85843f6258ef2f0d60ea2bc40c5bf364f98e15233a96c5b6d3210e0f51"
+    },
+    "analyze_llm_pilot.py": {
+      "bytes": 8098,
+      "sha256": "5fa55b5de290e55f923a22bc8d4a5774cfacd2a784c29e4c65a1ac9215170a76"
+    },
+    "docs/evidence_protocol_v0.2.md": {
+      "bytes": 5230,
+      "sha256": "8f1c923ea714ac32cc2731507ff3a2905ef128dde214b0a8123ac7c0fe0136a7"
+    },
+    "docs/research_design.md": {
+      "bytes": 16718,
+      "sha256": "1c3a784bc11b8bf3924e708023f1a58b100c76d8f7fed5dd058ff0cbadd16c25"
+    },
+    "docs/results_v0.2.md": {
+      "bytes": 3422,
+      "sha256": "fd4c2ea1e51d3396e4e59b893fbd888e9e72f90c46981899c3fb0c2104b0eee7"
+    },
+    "evidence/README.md": {
+      "bytes": 1329,
+      "sha256": "4408a8f9b9a4629a4dad61b5107f17730cc93018246652bca948b7a878f63864"
+    },
+    "evidence/analysis_v0_2/evidence_summary.md": {
+      "bytes": 5475,
+      "sha256": "22ff7d668f7aa9cb4b8e623c1a49f6ff9f6e9def7a9d4e183c0b6bcf43fa6f46"
+    },
+    "evidence/analysis_v0_2/h2_coefficients.csv": {
+      "bytes": 1434,
+      "sha256": "1fe3c6de2115f31df433b55a5354eb710729217639d09e790b8ac8155d7343fd"
+    },
+    "evidence/analysis_v0_2/h2_comparisons.csv": {
+      "bytes": 819,
+      "sha256": "c4f14bde079d335794a1d0a29fc31e319f13652984e33e1288c8578995366da3"
+    },
+    "evidence/analysis_v0_2/h2_run_slopes.csv": {
+      "bytes": 25416,
+      "sha256": "8c7e2bd131d44819537f9c5df125f974665de6c9b2c7984a5dc2be4f30941b8d"
+    },
+    "evidence/analysis_v0_2/h3_impulse_responses.csv": {
+      "bytes": 3295,
+      "sha256": "00ad5bfdb35c1f13d429930314dcdc82bbc808474d9559bbe7698f1fcfe795dc"
+    },
+    "evidence/analysis_v0_2/h7_comparisons.csv": {
+      "bytes": 15563,
+      "sha256": "8978514d001c274834711fa7b8a145903633836715859e38378602dc2d38d915"
+    },
+    "evidence/analysis_v0_2/h7_scenario_outcomes.csv": {
+      "bytes": 7996,
+      "sha256": "cb2bcb1071fa9e4272f0aa2dd74f9d984d7dda2db6cf95a0455682d2e868f328"
+    },
+    "evidence/analysis_v0_2/power_analysis.csv": {
+      "bytes": 11252,
+      "sha256": "c75e31ad829f1c6db2e1b275701e910998a5e5f2125fca9a0fa16a228d12ef21"
+    },
+    "evidence/deepseek8b_pilot_v0_2_final.sqlite": {
+      "bytes": 184320,
+      "sha256": "e1b291e378d6f7ada9164b5ea616ca170afbadf38330621c69f7cb32c1cef1f0"
+    },
+    "evidence/dgp_source_b15fc02ecf92a7e3.tar.gz": {
+      "bytes": 76257,
+      "sha256": "c34111d3854f60ff294bd6772edb657a954dec68884bf20d5a7e3c8da74303ae"
+    },
+    "evidence/dgp_source_c89b0b80fef6e979.tar.gz": {
+      "bytes": 77181,
+      "sha256": "9111a6ab819277e2fac55d55b3ab9a3303ee6ecb604d3b034d71ee1112d5db75"
+    },
+    "evidence/llm_analysis_v0_2/llm_call_audit.csv": {
+      "bytes": 10517,
+      "sha256": "fcb1fddbd03222dd4f25f8cd5d2da4e2b0205988cfecd6bf5a01b388eb9a7d58"
+    },
+    "evidence/llm_analysis_v0_2/llm_matched_comparisons.csv": {
+      "bytes": 201,
+      "sha256": "9c5119d1facf72ec2d7798aa12e43833eaf788970fe46a4a577ff2d6cb0aad9d"
+    },
+    "evidence/llm_analysis_v0_2/llm_regime_summary.csv": {
+      "bytes": 324,
+      "sha256": "165f38ef7d03a32a59f2edeb586c80bc39653a2dc8b3ef0e67d8e1977f6ad8c6"
+    },
+    "evidence/llm_analysis_v0_2/llm_run_metrics.csv": {
+      "bytes": 869,
+      "sha256": "3b04eb4791a149f920779fa15c95c517590926534a2d0449df0423fe889e057e"
+    },
+    "evidence/llm_analysis_v0_2/llm_validation_summary.md": {
+      "bytes": 862,
+      "sha256": "35e9525bfbd4034222d6e8260189e07c14c2b20851d714e1000a63f70c6b360d"
+    },
+    "evidence/paper_evidence_v0_2.sqlite": {
+      "bytes": 166838272,
+      "sha256": "8330f437e3653d23d3901bd34c0322c96cd8986bfb59a562727ff7d49dfb0b68"
+    },
+    "evidence/test_report_v0_2.txt": {
+      "bytes": 1402,
+      "sha256": "9b38f550b85e0adf68ec825cbc4773b0e8b3b274337cf3c9e57d25453c900869"
+    }
+  },
+  "excluded_from_inference": [
+    "evidence/diagnostics/"
+  ],
+  "frozen_at_utc": "2026-07-27T22:50:52.663104+00:00",
+  "llm_audit": {
+    "bank_offers": 24,
+    "credit_applications": 18,
+    "llm_calls": 42,
+    "loan_contracts": 12,
+    "period_macro": 12,
+    "runs": 6
+  },
+  "llm_dgp_fingerprint": "c89b0b80fef6e97996cc36a16b6babf2cf9afb0e8a2a12aab375ea514ca3d62a",
+  "manifest_version": "0.2",
+  "primary_power_checks": [
+    {
+      "hypothesis": "H2",
+      "observed_effect": "0.011838382098819752",
+      "outcome": "borrower_leverage",
+      "pilot_n": "30",
+      "pilot_std": "0.0004345954136271891",
+      "regime": "market_minus_administered",
+      "required_n_80pct": "1"
+    },
+    {
+      "hypothesis": "H2",
+      "observed_effect": "0.0030293612490447167",
+      "outcome": "borrower_risk",
+      "pilot_n": "30",
+      "pilot_std": "0.0003293143425391486",
+      "regime": "market_minus_administered",
+      "required_n_80pct": "1"
+    },
+    {
+      "hypothesis": "H2",
+      "observed_effect": "-0.0014451032284271918",
+      "outcome": "reserve_buffer",
+      "pilot_n": "30",
+      "pilot_std": "0.001073725654936461",
+      "regime": "market_minus_administered",
+      "required_n_80pct": "5"
+    },
+    {
+      "hypothesis": "H2",
+      "observed_effect": "-0.004404864256770768",
+      "outcome": "capital_buffer",
+      "pilot_n": "30",
+      "pilot_std": "0.000972880171942741",
+      "regime": "market_minus_administered",
+      "required_n_80pct": "1"
+    },
+    {
+      "hypothesis": "H2",
+      "observed_effect": "0.9784877040831033",
+      "outcome": "expected_inflation",
+      "pilot_n": "30",
+      "pilot_std": "0.026368335494819",
+      "regime": "market_minus_administered",
+      "required_n_80pct": "1"
+    },
+    {
+      "hypothesis": "H3",
+      "observed_effect": "-69.5652778534401",
+      "outcome": "new_credit",
+      "pilot_n": "30",
+      "pilot_std": "70.5782251697702",
+      "regime": "market_minus_administered",
+      "required_n_80pct": "9"
+    },
+    {
+      "hypothesis": "H3",
+      "observed_effect": "-36.299230321829015",
+      "outcome": "output",
+      "pilot_n": "30",
+      "pilot_std": "32.97066047533334",
+      "regime": "market_minus_administered",
+      "required_n_80pct": "7"
+    },
+    {
+      "hypothesis": "H3",
+      "observed_effect": "-27.140333949952037",
+      "outcome": "final_credit",
+      "pilot_n": "30",
+      "pilot_std": "31.315445721851166",
+      "regime": "market_minus_administered",
+      "required_n_80pct": "11"
+    },
+    {
+      "hypothesis": "H7",
+      "observed_effect": "576.1014884369881",
+      "outcome": "new_credit",
+      "pilot_n": "40",
+      "pilot_std": "6.731724790862912",
+      "regime": "scarce_penalty_minus_unavailable:administered",
+      "required_n_80pct": "1"
+    },
+    {
+      "hypothesis": "H7",
+      "observed_effect": "-1395.378871970916",
+      "outcome": "liquidity_shortfall",
+      "pilot_n": "40",
+      "pilot_std": "212.60350492979222",
+      "regime": "scarce_penalty_minus_unavailable:administered",
+      "required_n_80pct": "1"
+    },
+    {
+      "hypothesis": "H7",
+      "observed_effect": "63.63107328",
+      "outcome": "new_credit",
+      "pilot_n": "40",
+      "pilot_std": "58.79033647418749",
+      "regime": "scarce_penalty_minus_unavailable:market",
+      "required_n_80pct": "7"
+    },
+    {
+      "hypothesis": "H7",
+      "observed_effect": "-1395.378871970916",
+      "outcome": "liquidity_shortfall",
+      "pilot_n": "40",
+      "pilot_std": "212.60350492979225",
+      "regime": "scarce_penalty_minus_unavailable:market",
+      "required_n_80pct": "1"
+    },
+    {
+      "hypothesis": "H7",
+      "observed_effect": "546.1014884369881",
+      "outcome": "new_credit",
+      "pilot_n": "40",
+      "pilot_std": "6.731724790862912",
+      "regime": "scarce_penalty_minus_limited:administered",
+      "required_n_80pct": "1"
+    },
+    {
+      "hypothesis": "H7",
+      "observed_effect": "-671.6448597077318",
+      "outcome": "liquidity_shortfall",
+      "pilot_n": "40",
+      "pilot_std": "184.91314542679515",
+      "regime": "scarce_penalty_minus_limited:administered",
+      "required_n_80pct": "1"
+    },
+    {
+      "hypothesis": "H7",
+      "observed_effect": "33.63107328",
+      "outcome": "new_credit",
+      "pilot_n": "40",
+      "pilot_std": "58.79033647418749",
+      "regime": "scarce_penalty_minus_limited:market",
+      "required_n_80pct": "24"
+    },
+    {
+      "hypothesis": "H7",
+      "observed_effect": "-1232.5288345594226",
+      "outcome": "liquidity_shortfall",
+      "pilot_n": "40",
+      "pilot_std": "317.42730109753444",
+      "regime": "scarce_penalty_minus_limited:market",
+      "required_n_80pct": "1"
+    }
+  ],
+  "rule_audit": {
+    "cells": {
+      "h2_baseline:administered": 30,
+      "h2_baseline:market": 30,
+      "h3_baseline:administered": 30,
+      "h3_baseline:market": 30,
+      "h3_demand:administered": 30,
+      "h3_demand:market": 30,
+      "h7_abundant_unavailable:administered": 30,
+      "h7_abundant_unavailable:market": 30,
+      "h7_scarce_limited:administered": 40,
+      "h7_scarce_limited:market": 40,
+      "h7_scarce_penalty:administered": 40,
+      "h7_scarce_penalty:market": 40,
+      "h7_scarce_unavailable:administered": 40,
+      "h7_scarce_unavailable:market": 40
+    },
+    "period_rows": 6240,
+    "runs": 480
+  },
+  "rule_dgp_fingerprint": "b15fc02ecf92a7e33e998f309e41ca44dd7aac0ef46a55bf531c23862e234898"
+}

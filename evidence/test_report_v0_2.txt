@@ -1,0 +1,21 @@
+Running automated verification tests...
+============================= test session starts ==============================
+platform darwin -- Python 3.13.11, pytest-9.0.3, pluggy-1.6.0
+rootdir: /Users/hassaanvani/Desktop/Projects/Market-Determined-Interest-Rates
+plugins: asyncio-1.4.0, anyio-4.13.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 38 items
+
+tests/test_accounting.py .......                                         [ 18%]
+tests/test_credit_market.py ......                                       [ 34%]
+tests/test_experiment_recording.py ....                                  [ 44%]
+tests/test_experiment_runner.py .                                        [ 47%]
+tests/test_liquidity.py .....                                            [ 60%]
+tests/test_llm_runtime.py ..                                             [ 65%]
+tests/test_provenance.py .                                               [ 68%]
+tests/test_research_data.py ...                                          [ 76%]
+tests/test_settlement.py .....                                           [ 89%]
+tests/test_shocks.py ...                                                 [ 97%]
+tests/test_working_capital.py .                                          [100%]
+
+============================== 38 passed in 2.33s ==============================

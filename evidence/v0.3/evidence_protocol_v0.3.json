@@ -1,0 +1,137 @@
+{
+  "behavior_mode": "rule",
+  "calibration_fingerprint": "63ffd80bee7bb13552db4b76708ce14527b328094187a1727c270b19790095f0",
+  "calibration_id": "recent-us-2022q1-2024q4",
+  "config_fingerprint": "0dda85982400844de8d5dd8c3af55eaa319018d6bfccbd47c345969725817021",
+  "data_fingerprint": "66b3f31e7190708aec14ac114ad512381482a15a224ecf598967dc6ef0222092",
+  "estimands": {
+    "H2": [
+      "credit_weighted_productivity",
+      "unfunded_demand_share"
+    ],
+    "H3": [
+      "cumulative_new_credit",
+      "cumulative_output"
+    ],
+    "H7": [
+      "cumulative_new_credit",
+      "unresolved_liquidity_shortfall"
+    ]
+  },
+  "exclusions": [
+    "failed or incomplete horizons",
+    "fingerprint mismatch",
+    "foreign-key violation"
+  ],
+  "failure_policy": "fail_fast",
+  "frozen": true,
+  "mechanisms": {
+    "bank_competition": true,
+    "borrower_risk_pricing": true,
+    "capital_pricing": true,
+    "credit_to_production": true,
+    "emergency_facility": true,
+    "inflation_pass_through": true,
+    "interbank_market": true,
+    "liquidity_pricing": true
+  },
+  "parameter_set_id": "baseline-calibrated",
+  "parameters": {
+    "administered_pass_through": 0.25,
+    "administered_spread": 0.024723399885883873,
+    "bank_income_retention_rate": 0.1150352141130006,
+    "base_credit_demand": 0.07787108166985353,
+    "baseline_labor_demand": 4.0,
+    "borrower_leverage_limit": 3.0,
+    "capital_depreciation": 0.025,
+    "capital_price": 0.01,
+    "capital_requirement": 0.08,
+    "collateral_recovery_rate": 0.25,
+    "default_equity_threshold": 0.0,
+    "demand_return_sensitivity": 0.0,
+    "deposit_concentration": "empirical",
+    "deposit_funding_price": 0.03,
+    "deposit_reallocation_speed": 1.0,
+    "deposit_recovery_rate": 1.0,
+    "emergency_facility": "penalty",
+    "emergency_limit_equity": 1.0,
+    "emergency_penalty_spread": 0.02,
+    "expected_project_return": 0.1,
+    "goods_price": 1.0,
+    "horizon": 24,
+    "inflation_pass_through": 1.0,
+    "initial_bank_deposits": 100.0,
+    "initial_bank_equity": 12.0,
+    "initial_bank_reserves": 25.0,
+    "initial_firm_capital": 20.0,
+    "initial_firm_deposits": 20.0,
+    "initial_household_deposits": 100.0,
+    "interbank_maturity": 1,
+    "investment_share": 0.35,
+    "legacy_book_rate": 0.07358640306351304,
+    "legacy_ci_loan_growth_rate": -0.05368959050888802,
+    "legacy_loan_growth_rate": 0.010912186027377077,
+    "liquidity_adjustment_speed": 0.28755473708065166,
+    "liquidity_price": 0.015,
+    "liquidity_target_ratio": 0.08,
+    "loan_deposit_target": 0.793989391128901,
+    "loan_maturity": 19,
+    "marginal_propensity_consume_income": 0.8,
+    "marginal_propensity_consume_wealth": 0.03,
+    "market_intercept": 0.033586397854689636,
+    "max_lender_share": 0.6,
+    "n_banks": 5,
+    "n_firms": 30,
+    "periods_per_year": 4,
+    "policy_rate": 0.0394910049370919,
+    "production_alpha": 0.35,
+    "quote_dispersion": 0.002,
+    "required_real_return": 0.015,
+    "reserve_remuneration_rate": 0.0394910049370919,
+    "reserve_requirement": 0.0,
+    "resolution_delay": 1,
+    "risk_price": 0.02956036298109435,
+    "risk_weight": 1.0,
+    "wage": 1.0
+  },
+  "planned_rule_runs": 8096,
+  "power_design": {
+    "h7_matched_seeds": 40,
+    "h7_required_by_pilot": 37,
+    "main_matched_seeds": 809,
+    "main_required_by_pilot": 809,
+    "planning_multiplicity": "Bonferroni 0.025 per outcome; final inference uses Holm",
+    "target_power": 0.9
+  },
+  "rate_regimes": [
+    "administered",
+    "market"
+  ],
+  "replications": 100,
+  "required_outcomes": [
+    "credit_weighted_productivity",
+    "unfunded_demand_share",
+    "cumulative_new_credit",
+    "cumulative_output",
+    "unresolved_liquidity_shortfall"
+  ],
+  "scenario_id": "h2_h3_baseline",
+  "seed_namespace": "confirmatory-v0.3",
+  "seed_namespaces": {
+    "confirmatory": "confirmatory-v0.3",
+    "pilot_h7": "pilot-h7-v0.3",
+    "pilot_main": "pilot-v0.3",
+    "smoke": "smoke-v0.3"
+  },
+  "shocks": [],
+  "specification_id": "v0.3",
+  "timing": {
+    "cumulative_response_window": [
+      8,
+      23
+    ],
+    "demand_shock_duration": 4,
+    "demand_shock_start_period": 8,
+    "horizon": 24
+  }
+}

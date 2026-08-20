@@ -1,0 +1,19 @@
+{
+  "outputs": [
+    {
+      "bytes": 4931,
+      "path": "paper/v0.3/generated/local_sensitivity_v2/local_h3_effects.csv",
+      "sha256": "90ce83ca02af2cbe384803d22ea41391a7a55a755409708107d016b9ad3532b0"
+    },
+    {
+      "bytes": 168165,
+      "path": "paper/v0.3/generated/local_sensitivity_v2/local_run_summaries.csv",
+      "sha256": "38c135073bb1597f8b226ad55cdaa54ee9f2892701bc22b57751e7bb36884e30"
+    },
+    {
+      "bytes": 355,
+      "path": "paper/v0.3/generated/local_sensitivity_v2/local_sensitivity_report.json",
+      "sha256": "773e58c69c3182a74bd81758e29af15a0069e5f8b3f6ea533baaac22ee53de84"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "addendum_id": "v0.4-concentration-addendum-1",
+  "base_spec_sha256": "184153721a4c49853078488bd3c8c9cf28d73e3eca30e9ac5bf19375369fc94c",
+  "base_specification": "v0.3",
+  "calibration_fingerprint": "63ffd80bee7bb13552db4b76708ce14527b328094187a1727c270b19790095f0",
+  "calibration_sha256": "f7ee4bac7f248ea045a74f9eb65a0d74d2ca5d7e3c68a780211d0e52d177bde9",
+  "classification": "post-confirmatory_design_correction",
+  "code_fingerprint": "eb8e27b356b370f93de7bb3fdb3b18c00bf174fed2acd39f16818e1bb1000556",
+  "estimands": [
+    "credit_weighted_productivity",
+    "mean_unfunded_share"
+  ],
+  "frozen_at": "2026-08-20T16:07:25.157443+00:00",
+  "interpretation": "Robustness of the within-cell market-minus-administered effect; not a causal estimate of concentration itself.",
+  "planned_runs": 150,
+  "purpose": "Correct the no-op low/high deposit-concentration robustness cells; do not alter v0.3 confirmatory inference.",
+  "replications_per_regime_cell": 25,
+  "seed_namespace": "confirmatory-v0.4-concentration-addendum-1",
+  "settings": [
+    [
+      30,
+      5,
+      "low"
+    ],
+    [
+      30,
+      5,
+      "high"
+    ],
+    [
+      100,
+      5,
+      "high"
+    ]
+  ],
+  "status": "frozen",
+  "transformation": {
+    "high": "largest sampled bank receives weight n_banks-1; other banks receive weight 1",
+    "invariants": [
+      "aggregate deposits",
+      "each sampled bank's balance-sheet ratios",
+      "all non-size rate and growth variables"
+    ],
+    "low": "equal deposit shares"
+  }
+}

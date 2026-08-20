@@ -1,0 +1,114 @@
+{
+  "audit_states": 10,
+  "audit_templates": 3,
+  "bank_schema": {
+    "properties": {
+      "approval_fraction": {
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Approval Fraction",
+        "type": "number"
+      },
+      "maturity": {
+        "maximum": 24,
+        "minimum": 1,
+        "title": "Maturity",
+        "type": "integer"
+      },
+      "nominal_rate": {
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Nominal Rate",
+        "type": "number"
+      },
+      "rationale": {
+        "title": "Rationale",
+        "type": "string"
+      },
+      "rejection_code": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Rejection Code"
+      }
+    },
+    "required": [
+      "approval_fraction",
+      "maturity",
+      "nominal_rate",
+      "rationale"
+    ],
+    "title": "BankDecision",
+    "type": "object"
+  },
+  "banks": 2,
+  "firm_schema": {
+    "properties": {
+      "expected_return": {
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Expected Return",
+        "type": "number"
+      },
+      "maturity": {
+        "maximum": 24,
+        "minimum": 1,
+        "title": "Maturity",
+        "type": "integer"
+      },
+      "max_rate": {
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Max Rate",
+        "type": "number"
+      },
+      "purpose": {
+        "enum": [
+          "working_capital",
+          "investment",
+          "mixed"
+        ],
+        "title": "Purpose",
+        "type": "string"
+      },
+      "rationale": {
+        "title": "Rationale",
+        "type": "string"
+      },
+      "requested_fraction": {
+        "maximum": 1,
+        "minimum": 0,
+        "title": "Requested Fraction",
+        "type": "number"
+      }
+    },
+    "required": [
+      "requested_fraction",
+      "maturity",
+      "purpose",
+      "expected_return",
+      "max_rate",
+      "rationale"
+    ],
+    "title": "FirmDecision",
+    "type": "object"
+  },
+  "firms": 3,
+  "hard_call_timeout_seconds": 30.0,
+  "model": "deepseek-r1:8b",
+  "pairs": 30,
+  "periods": 3,
+  "prompt_function_sha256": "0a16ffba2f852ab1d0cc5f30833995d0ae1c5f2341cb3cc9e9e0ec366c86dda2",
+  "prompt_version": "deepseek-v0.3-bounded-share-2",
+  "protocol_fingerprint": "475733d47cb2dd90b397dcced1e42a404d016c72300a1c3a75e1fbbff3dc1209",
+  "reasoning": "disabled",
+  "retries": 2,
+  "state_generator_sha256": "9376f37fb88588cbd262b61c0c2ed78690bd6ae9c47000fb1e02f31bfd7d8e4c",
+  "temperature": 0.0
+}

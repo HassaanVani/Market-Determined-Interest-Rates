@@ -1,0 +1,91 @@
+{
+  "comparative_inference_allowed": true,
+  "completed_pair_threshold_met": true,
+  "economic_distributions": {
+    "administered": {
+      "approved_principal": {
+        "mean": 7.702254166666666,
+        "median": 7.7737099999999995,
+        "n": 180,
+        "p25": 5.41096875,
+        "p75": 9.4780375,
+        "std": 2.8525802982561776
+      },
+      "nominal_rate": {
+        "mean": 0.051,
+        "median": 0.05,
+        "n": 180,
+        "p25": 0.05,
+        "p75": 0.06,
+        "std": 0.008120618476719889
+      },
+      "requested_principal": {
+        "mean": 48.12203244444444,
+        "median": 49.51745,
+        "n": 270,
+        "p25": 36.46545,
+        "p75": 60.1432725,
+        "std": 14.889338499483694
+      },
+      "rule_minus_llm_rate": {
+        "mean": 0.022143634465076664,
+        "median": 0.02115214983719408,
+        "n": 180,
+        "p25": 0.016247525123857638,
+        "p75": 0.024348903691146728,
+        "std": 0.008540462867465747
+      }
+    },
+    "market": {
+      "approved_principal": {
+        "mean": 7.272589152777778,
+        "median": 7.350524999999999,
+        "n": 180,
+        "p25": 5.48995625,
+        "p75": 8.98808125,
+        "std": 2.544622788996056
+      },
+      "nominal_rate": {
+        "mean": 0.05651833333333334,
+        "median": 0.06,
+        "n": 180,
+        "p25": 0.05,
+        "p75": 0.06,
+        "std": 0.0072089487213231485
+      },
+      "requested_principal": {
+        "mean": 47.68855851851852,
+        "median": 49.2355,
+        "n": 270,
+        "p25": 36.7504375,
+        "p75": 59.113375,
+        "std": 14.003544463186667
+      },
+      "rule_minus_llm_rate": {
+        "mean": 0.009056204526973295,
+        "median": 0.0066659619302304705,
+        "n": 180,
+        "p25": -0.00013933734134121897,
+        "p75": 0.014719112951949699,
+        "std": 0.015620977604396452
+      }
+    }
+  },
+  "model": "deepseek-r1:8b",
+  "pairs_completed": 30,
+  "pairs_requested": 30,
+  "prompt_sensitivity_rate_range": {
+    "mean": 0.0052549999999999975,
+    "median": 7.499999999999868e-05,
+    "n": 10,
+    "p25": 0.0,
+    "p75": 0.00827499999999999,
+    "std": 0.009240397448162064
+  },
+  "prompt_version": "deepseek-v0.3-bounded-share-2",
+  "protocol_fingerprint": "475733d47cb2dd90b397dcced1e42a404d016c72300a1c3a75e1fbbff3dc1209",
+  "reasoning": "disabled",
+  "temperature": 0.0,
+  "valid_call_rate": 1.0,
+  "valid_call_threshold_met": true
+}

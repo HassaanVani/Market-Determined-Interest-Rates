@@ -1,0 +1,16 @@
+{
+  "addendum_id": "v0.4-local-sensitivity-1",
+  "interpretation": "descriptive local robustness mapping, not confirmatory inference",
+  "parameter_sets": 13,
+  "runs": 520,
+  "sign_counts": {
+    "cumulative_new_credit": {
+      "negative": 9,
+      "positive": 4
+    },
+    "cumulative_output": {
+      "negative": 11,
+      "positive": 2
+    }
+  }
+}

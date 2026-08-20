@@ -1,0 +1,3 @@
+regime,runs,completed_runs,applications,positive_applications,accepted_offers,mean_new_credit,mean_accepted_rate,llm_calls,failed_calls,retry_calls,mean_latency_seconds
+administered,3,3,9,6,6,88.33333333333333,0.04083333333333333,21,0,0,9.034610136922094
+market,3,3,9,6,6,88.33333333333333,0.04,21,0,0,13.944652162680757

@@ -1,0 +1,39 @@
+{
+  "outputs": [
+    {
+      "bytes": 188352,
+      "path": "paper/v0.3/generated/robustness/cumulative_new_credit_phase_map.png",
+      "sha256": "8e498d7c1285c73c207444f594c56aa8e85cb7dbf8d935e90aca1276404832d7"
+    },
+    {
+      "bytes": 186289,
+      "path": "paper/v0.3/generated/robustness/cumulative_output_phase_map.png",
+      "sha256": "1a492ca113a30f990ca98f40e1905952a705cd91cb8fa7a972fa3e77645ca350"
+    },
+    {
+      "bytes": 2809,
+      "path": "paper/v0.3/generated/robustness/h2_ablation_effects.csv",
+      "sha256": "0b85ad1ebe27887391c6ea56a4631a5f739cf3283e49aefeebfaa7fe4ef46566"
+    },
+    {
+      "bytes": 2682,
+      "path": "paper/v0.3/generated/robustness/h3_ablation_effects.csv",
+      "sha256": "0ca69f0384c7c8e98f71b7a161288ea3ea14876aa2027f98affeec7a608d9a1a"
+    },
+    {
+      "bytes": 45885,
+      "path": "paper/v0.3/generated/robustness/sensitivity_parameter_effects.csv",
+      "sha256": "04925002fb9b6d5d106930862c334a787c103d7997a970c61c60f29f5c68ad85"
+    },
+    {
+      "bytes": 377,
+      "path": "paper/v0.3/generated/robustness/sensitivity_report.json",
+      "sha256": "606cf289153e1fc733f8d700d3bb6d80012b838794a734d0bf8f31941dec52af"
+    },
+    {
+      "bytes": 2139,
+      "path": "paper/v0.3/generated/robustness/topology_effects.csv",
+      "sha256": "56e13ade350a97b04a596984f549a8f165b41cf01f954c776481a4614cacfab5"
+    }
+  ]
+}

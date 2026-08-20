@@ -1,0 +1,34 @@
+{
+  "addendum_id": "v0.4-local-sensitivity-2",
+  "base_protocol_sha256": "ab6deb9b4f719dc15defb7e51d6546bd63f8e154b6ace1e82c5c3d92a5ae24e9",
+  "calibration_sha256": "f7ee4bac7f248ea045a74f9eb65a0d74d2ca5d7e3c68a780211d0e52d177bde9",
+  "classification": "post-confirmatory_local_robustness_mapping",
+  "code_fingerprint": "74bef5b3000574c04328c53a8698a534867271bd0ba2a1c371832050a2cb94af",
+  "design": "calibrated base plus one-at-a-time perturbations",
+  "frozen_at": "2026-08-20T16:29:00.985519+00:00",
+  "inference": "descriptive robustness mapping; not additional confirmatory tests",
+  "multipliers": [
+    0.9,
+    1.1
+  ],
+  "outcomes": [
+    "cumulative_new_credit",
+    "cumulative_output"
+  ],
+  "parameter_sets": 13,
+  "parameters": [
+    "production_alpha",
+    "investment_share",
+    "base_credit_demand",
+    "risk_price",
+    "liquidity_price",
+    "capital_price"
+  ],
+  "planned_runs": 1040,
+  "purpose": "Map H3 in a compact one-at-a-time plus/minus 10 percent neighborhood of the frozen calibrated parameters.",
+  "replications_per_regime_scenario_cell": 20,
+  "seed_namespace": "robustness-v0.4-local-sensitivity-2",
+  "status": "frozen",
+  "supersedes": "v0.4-local-sensitivity-1",
+  "supersession_reason": "v1 used different seed streams across parameter sets and is retained as an invalidated audit artifact"
+}

@@ -1,0 +1,11 @@
+{
+  "h7_power_status": "pending dedicated institutional-grid pilot",
+  "multiplicity_planning": "Bonferroni 0.025 per outcome; final Holm",
+  "original_main_design_is_adequate": false,
+  "original_main_matched_seeds": 100,
+  "pilot_pairs_per_cell": 20,
+  "pilot_seed_namespace": "pilot-v0.3",
+  "required_main_matched_seeds": 809,
+  "table": "evidence/v0.3/pilot_analysis/power_analysis.csv",
+  "target_power": 0.9
+}

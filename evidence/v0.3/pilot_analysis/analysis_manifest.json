@@ -1,0 +1,39 @@
+{
+  "outputs": [
+    {
+      "bytes": 10832,
+      "path": "evidence/v0.3/pilot_analysis/h2_mechanism_slopes.csv",
+      "sha256": "089dfa96d27db26155aca7775abc2715f602f3bed4b026f94f4c9ab6d899102f"
+    },
+    {
+      "bytes": 377,
+      "path": "evidence/v0.3/pilot_analysis/h2_primary_effects.csv",
+      "sha256": "c6711406491176b8e974f2fb5b3e75617a9383c76ae703fe5702c803db00ecfc"
+    },
+    {
+      "bytes": 363,
+      "path": "evidence/v0.3/pilot_analysis/h3_difference_in_differences.csv",
+      "sha256": "488159a9552d152fcc6d9d45a0cbe131e51158a2f8fafd8009a41cbf643cf70c"
+    },
+    {
+      "bytes": 1,
+      "path": "evidence/v0.3/pilot_analysis/h7_anchor_effects.csv",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "bytes": 62246,
+      "path": "evidence/v0.3/pilot_analysis/main_credit_by_scenario.png",
+      "sha256": "e8dd40a114cd83be00de0725ded3367b16cd6921a502d6831589650d16554f72"
+    },
+    {
+      "bytes": 13188,
+      "path": "evidence/v0.3/pilot_analysis/run_summaries.csv",
+      "sha256": "0f34c89165f1a6ed5ee6d6497817a51ed53d3ada11222f02e887cd0065202053"
+    },
+    {
+      "bytes": 6527,
+      "path": "evidence/v0.3/pilot_analysis/secondary_outcomes.csv",
+      "sha256": "b7558530cd902a88f260648aaebc0912c85eae3719483aa7a1d528a1b01e2456"
+    }
+  ]
+}

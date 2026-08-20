@@ -1,0 +1,13 @@
+{
+  "anchor_power_scope": "Anchor contrasts are distributional/descriptive; replication is powered for the two predeclared reserve/facility interactions.",
+  "anchor_table": "evidence/v0.3/pilot_h7c_analysis/h7_anchor_effects.csv",
+  "interaction_table": "evidence/v0.3/pilot_h7c_analysis/h7_interaction_effects.csv",
+  "maximum_nonzero_anchor_count": 135,
+  "pilot_pairs_per_cell": 20,
+  "pilot_seed_namespace": "pilot-h7-v0.3",
+  "planned_h7_design_is_adequate": true,
+  "planned_h7_pairs_per_cell": 40,
+  "required_h7_pairs_per_cell": 37,
+  "structural_zero_anchor_outcomes": 17,
+  "target_power": 0.9
+}

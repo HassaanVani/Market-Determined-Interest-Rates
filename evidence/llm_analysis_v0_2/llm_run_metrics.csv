@@ -1,0 +1,7 @@
+run_id,regime,seed,status,applications,positive_applications,requested_principal,offers,approved_offers,accepted_offers,new_credit,mean_accepted_rate,llm_calls,failed_calls,retry_calls,mean_latency_seconds
+1d857d10792d25fb-9d11cdead1e9,administered,42000,completed,3,2,105.0,4,4,2,105.0,0.042499999999999996,7,0,0,8.850018571430285
+61f446b3dddc4f90-621c374a0856,administered,42001,completed,3,2,55.0,4,4,2,55.0,0.04,7,0,0,9.50159222619342
+99fe3478253e0801-9baeec73e144,administered,42002,completed,3,2,105.0,4,4,2,105.0,0.04,7,0,0,8.752219613142577
+cd8dab642b5773ae-27c4779128f9,market,42000,completed,3,2,105.0,4,4,2,105.0,0.04,7,0,0,12.364508827416492
+a20f19fcdf31e07d-53f7b05f630f,market,42001,completed,3,2,55.0,4,4,2,55.0,0.04,7,0,0,16.984395339186968
+ee10de39eabb069d-d46c31280097,market,42002,completed,3,2,105.0,4,4,2,105.0,0.04,7,0,0,12.485052321438811

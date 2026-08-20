@@ -1,0 +1,19 @@
+{
+  "outputs": [
+    {
+      "bytes": 1325,
+      "path": "paper/v0.3/generated/concentration_addendum/concentration_effects.csv",
+      "sha256": "892008129ae036206ee47c61e44da9161dcda77679e52bae65bd34c1c0216085"
+    },
+    {
+      "bytes": 413,
+      "path": "paper/v0.3/generated/concentration_addendum/concentration_report.json",
+      "sha256": "a945b682df108951d8f6ed5caafffb3a5e538a641901724c53892a724661a7a8"
+    },
+    {
+      "bytes": 32040,
+      "path": "paper/v0.3/generated/concentration_addendum/concentration_run_summaries.csv",
+      "sha256": "d9b9732a43aa5f1c454f60a57816d523f839d2f0cd53148bd01cc6b61359f343"
+    }
+  ]
+}

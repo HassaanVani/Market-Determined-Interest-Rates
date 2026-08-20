@@ -1,0 +1,32 @@
+{
+  "addendum_id": "v0.4-local-sensitivity-1",
+  "base_protocol_sha256": "ab6deb9b4f719dc15defb7e51d6546bd63f8e154b6ace1e82c5c3d92a5ae24e9",
+  "calibration_sha256": "f7ee4bac7f248ea045a74f9eb65a0d74d2ca5d7e3c68a780211d0e52d177bde9",
+  "classification": "post-confirmatory_local_robustness_mapping",
+  "code_fingerprint": "49425aa5e349f09b5b6f206dc36df2b1196bb42fdbd9f2fc0f5ac6b850590703",
+  "design": "calibrated base plus one-at-a-time perturbations",
+  "frozen_at": "2026-08-20T16:23:35.282900+00:00",
+  "inference": "descriptive robustness mapping; not additional confirmatory tests",
+  "multipliers": [
+    0.9,
+    1.1
+  ],
+  "outcomes": [
+    "cumulative_new_credit",
+    "cumulative_output"
+  ],
+  "parameter_sets": 13,
+  "parameters": [
+    "production_alpha",
+    "investment_share",
+    "base_credit_demand",
+    "risk_price",
+    "liquidity_price",
+    "capital_price"
+  ],
+  "planned_runs": 520,
+  "purpose": "Map H3 in a compact one-at-a-time plus/minus 10 percent neighborhood of the frozen calibrated parameters.",
+  "replications_per_regime_scenario_cell": 10,
+  "seed_namespace": "robustness-v0.4-local-sensitivity-1",
+  "status": "frozen"
+}

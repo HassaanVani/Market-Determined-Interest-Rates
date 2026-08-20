@@ -1,0 +1,102 @@
+{
+  "approval_required": true,
+  "candidates": [
+    {
+      "bytes": 30948988115,
+      "files": 8097,
+      "path": "evidence/v0.3/confirmatory_shards"
+    },
+    {
+      "bytes": 1493762011,
+      "files": 489,
+      "path": "evidence/v0.3/smoke_shards"
+    },
+    {
+      "bytes": 317446867,
+      "files": 81,
+      "path": "evidence/v0.3/pilot_shards"
+    },
+    {
+      "bytes": 3281161107,
+      "files": 801,
+      "path": "evidence/v0.3/pilot-h7_shards"
+    },
+    {
+      "bytes": 3281162707,
+      "files": 801,
+      "path": "evidence/v0.3/pilot-h7b_shards"
+    },
+    {
+      "bytes": 3255960019,
+      "files": 801,
+      "path": "evidence/v0.3/pilot-h7c_shards"
+    },
+    {
+      "bytes": 342147072,
+      "files": 80,
+      "path": "evidence/v0.3/pilot-h7-accidental-main"
+    },
+    {
+      "bytes": 173542771,
+      "files": 41,
+      "path": "evidence/v0.3/pilot-h7-smoke"
+    },
+    {
+      "bytes": 173542811,
+      "files": 41,
+      "path": "evidence/v0.3/pilot-h7-smoke2"
+    },
+    {
+      "bytes": 460692773,
+      "files": 9090,
+      "path": "evidence/v0.3/pilot_h7_parquet"
+    },
+    {
+      "bytes": 460693573,
+      "files": 9090,
+      "path": "evidence/v0.3/pilot_h7b_parquet"
+    },
+    {
+      "bytes": 675057015,
+      "files": 151,
+      "path": "evidence/v0.4/concentration_shards"
+    },
+    {
+      "bytes": 2067247291,
+      "files": 521,
+      "path": "evidence/v0.4/local_sensitivity_shards"
+    },
+    {
+      "bytes": 4210687379,
+      "files": 1041,
+      "path": "evidence/v0.4/local_sensitivity_v2_shards"
+    }
+  ],
+  "prerequisites": [
+    "release_manifest verification passes",
+    "v0.3 consolidation validation passes",
+    "v0.4 addendum consolidation validation passes",
+    "user explicitly approves deletion"
+  ],
+  "reclaimable_bytes": 51142091511,
+  "retain": [
+    "evidence/v0.3/parquet",
+    "evidence/v0.3/evidence.duckdb",
+    "evidence/v0.3/llm",
+    "evidence/v0.4/parquet",
+    "evidence/v0.4/evidence.duckdb",
+    "evidence/v0.4/local_sensitivity_parquet",
+    "evidence/v0.4/local_sensitivity.duckdb",
+    "evidence/v0.4/local_sensitivity_v2_parquet",
+    "evidence/v0.4/local_sensitivity_v2.duckdb",
+    "evidence/release/v0.3",
+    "paper/v0.3/generated",
+    "evidence/v0.3/pilot_analysis",
+    "evidence/v0.3/pilot.duckdb",
+    "evidence/v0.3/pilot_parquet",
+    "evidence/v0.3/pilot_h7c_analysis",
+    "evidence/v0.3/pilot_h7c.duckdb",
+    "evidence/v0.3/pilot_h7c_parquet"
+  ],
+  "status": "inventory_only_no_files_deleted"
+}

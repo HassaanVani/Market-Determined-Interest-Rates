@@ -1,0 +1,11 @@
+{
+  "addendum_id": "v0.4-concentration-addendum-1",
+  "deposit_hhi_by_scenario": {
+    "addendum_concentration_100_5_high": 0.3229255015816858,
+    "addendum_concentration_30_5_high": 0.2906442621565995,
+    "addendum_concentration_30_5_low": 0.20116553401186038
+  },
+  "interpretation": "Within-cell regime robustness only; concentration is not assigned a causal coefficient.",
+  "runs": 150,
+  "scenarios": 3
+}

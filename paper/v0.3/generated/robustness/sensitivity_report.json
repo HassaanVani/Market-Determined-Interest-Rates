@@ -1,0 +1,17 @@
+{
+  "interpretation": "global_stress_map_not_local_calibration_neighborhood",
+  "matched_seeds_per_set": 5,
+  "parameter_sets": 100,
+  "sign_counts": {
+    "cumulative_new_credit": {
+      "negative": 16,
+      "positive_sign_reversal": 84,
+      "zero": 0
+    },
+    "cumulative_output": {
+      "negative": 85,
+      "positive_sign_reversal": 15,
+      "zero": 0
+    }
+  }
+}
