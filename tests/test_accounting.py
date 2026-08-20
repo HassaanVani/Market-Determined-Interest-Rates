@@ -26,7 +26,11 @@ def test_bank_regulatory_rejection():
     # Reserve requirement = 0.01 (extremely low, so it won't trigger initially)
     # Capital requirement = 0.20 (high, so it triggers easily)
     model = MacroModel(
-        n_firms=1, n_banks=1, reserve_requirement=0.01, capital_requirement=0.20
+        n_firms=1,
+        n_banks=1,
+        reserve_requirement=0.01,
+        capital_requirement=0.20,
+        leverage_limit=100.0,
     )
     bank = model.schedule.banks[0]
 
@@ -75,6 +79,7 @@ def test_loan_amortization_and_default_accounting():
     bank = model.schedule.banks[0]
     firm.current_balance += 50.0
     firm.current_debt += 50.0
+    bank.current_debt += 50.0
 
     # Run a step (which will trigger wage payment, consumption, and amortization payment)
     # The firm balance sheet will change, but invariants must preserve.
