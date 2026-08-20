@@ -22,6 +22,8 @@ print_usage() {
     echo "  tui [args]         Launch the real-time Terminal User Interface dashboard (e.g., --control)"
     echo "  sweep [steps] [s]  Run parameter sensitivity sweep (optional: steps, seeds)"
     echo "  sim [args]         Run default treatment/control comparison simulation"
+    echo "  pilot [args]       Run versioned factorial pilot experiments"
+    echo "  paper-suite [args] Run the frozen rule-based paper pilot suite"
     echo "  test               Run the unit test suite"
     echo ""
 }
@@ -43,9 +45,17 @@ case "$1" in
         echo "Launching default simulation..."
         $VENV_PYTHON run_simulation.py "${@:2}"
         ;;
+    pilot)
+        echo "Launching factorial pilot..."
+        $VENV_PYTHON run_experiments.py "${@:2}"
+        ;;
+    paper-suite)
+        echo "Launching paper experiment suite..."
+        $VENV_PYTHON run_paper_suite.py "${@:2}"
+        ;;
     test)
         echo "Running automated verification tests..."
-        $VENV_PYTEST tests/test_accounting.py
+        $VENV_PYTEST tests
         ;;
     *)
         print_usage
