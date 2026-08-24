@@ -87,7 +87,7 @@ positive demand shock, market pricing produces a 0.1445 smaller cumulative
 credit impulse and a 0.3512 smaller output impulse. These effects are precisely
 estimated in the confirmatory design but small relative to the total positive
 response. Borrower-risk pricing is the central mechanism: removing it nearly
-eliminates the H2 and H3 contrasts.
+eliminates the selection and shock-dampening contrasts.
 
 Institutional support matters. At low reserves with no emergency facility, the
 two regimes differ in both cumulative credit and unresolved settlement
@@ -98,19 +98,20 @@ credit-pricing institution cannot be evaluated independently of the settlement
 and backstop architecture supporting it.
 
 Robustness results discipline the scope of these conclusions. Population and
-bank-count variations preserve H2. A corrected, separately frozen concentration
-addendum preserves the H2 signs under low and high opening deposit
-concentration. A ±10 percent local sensitivity design preserves the H3 credit
-and output signs in 12 of 13 parameter sets; a modest reduction in the
-borrower-risk coefficient moves both estimates slightly above zero. An extreme
-global stress map contains many sign reversals. The calibrated H3 finding is
-therefore a local institutional result, not a theorem about all possible
-economies.
+bank-count variations preserve the allocation and rationing results. A corrected,
+separately frozen concentration addendum preserves the selection and rationing
+effects under low and high opening deposit concentration. A ±10 percent local
+sensitivity design preserves the demand-shock dampening signs in 12 of 13
+parameter sets; a modest reduction in the borrower-risk coefficient moves both
+estimates slightly above zero. An extreme global stress map contains many sign
+reversals. The calibrated shock-transmission finding is therefore a local
+institutional result, not a theorem about all possible economies.
 
 The rest of the paper presents the literature and institutional contribution,
-defines the model, describes data and calibration, states the frozen
-experimental design, reports H2/H3/H7, and discusses robustness, the bounded LLM
-exercise, limitations, and implications.
+defines the model, describes data and calibration, states the experimental
+design, reports empirical results across allocation, shock transmission, and
+liquidity interactions, and discusses robustness, the bounded LLM exercise,
+limitations, and implications.
 
 ## 2. Related literature and contribution
 
@@ -292,33 +293,33 @@ administered spread plus additional transition parameters. We therefore call
 pristine untouched holdout. A later frozen data vintage would be required for a
 fully independent external test.
 
-## 5. Hypotheses and experimental design
+## 5. Experimental design and empirical strategy
 
-H2a is a manipulation check: market quotes should exhibit stronger local-state
-pass-through. H2b predicts changes in credit-weighted productivity and the
-unfunded-demand share. H3 predicts that, under the recent-US calibration, market
-pricing dampens the positive demand shock's cumulative new-credit and output
-responses. H7 predicts that reserve abundance and facility generosity interact
-with the pricing regime in cumulative credit and unresolved liquidity.
+The empirical evaluation focuses on three primary institutional mechanisms:
+
+1. **Quote Pass-Through and Credit Allocation:** A manipulation check confirms that market pricing delivers stronger local-state pass-through, followed by an evaluation of changes in credit-weighted productivity and the unfunded-demand share.
+2. **Demand-Shock Transmission:** Under the recent-US calibration, we test whether market pricing dampens the cumulative new-credit and output response to a positive aggregate demand shock.
+3. **Liquidity and Emergency Backstops:** We examine how reserve abundance and facility design condition relative credit volume and settlement liquidity shortfalls across regimes.
 
 The confirmatory main design includes baseline and positive demand-shock
 scenarios, two regimes, and 809 matched seeds. The shock begins in period 8,
 lasts four periods, and raises demand by 25 percent. Cumulative responses use
-periods 8–23. H7 crosses five reserve anchors, four facility settings, two
-regimes, and 40 matched seeds. Mechanism ablations, topology cells, and 100
-Latin-hypercube stress sets are robustness exercises. The frozen design totals
-8,096 rule runs.
+periods 8–23. The liquidity-backstop experiment crosses five reserve anchors,
+four facility settings, two regimes, and 40 matched seeds. Mechanism ablations,
+topology cells, and 100 Latin-hypercube stress sets are robustness exercises.
+The frozen design totals 8,096 rule runs.
 
-Inference is across independent seeds, never agent-period rows. H2 uses matched
-market-minus-administered seed differences. H3 uses a matched difference in
-differences: market shock minus market baseline, less administered shock minus
-administered baseline. H7 uses predeclared interaction contrasts. Confidence
-intervals use 10,000 percentile bootstrap draws resampling matched seeds. Holm
-correction is applied within each two-outcome primary family.
+Inference is across independent seeds, never agent-period rows. Allocation
+estimands use matched market-minus-administered seed differences. Demand-shock
+transmission effects use a matched difference-in-differences (market shock
+minus market baseline, less administered shock minus administered baseline).
+Liquidity and facility interactions use predeclared interaction contrasts.
+Confidence intervals use 10,000 percentile bootstrap draws resampling matched
+seeds. Holm correction is applied within each two-outcome primary family.
 
 ## 6. Results
 
-### 6.1 H2: selection and rationing
+### 6.1 Credit Allocation and the Selection–Rationing Tradeoff
 
 The manipulation check succeeds. Full rather than attenuated pass-through
 raises the local-state pass-through coefficient by 0.75. The slope of quoted
@@ -338,7 +339,7 @@ The allocation gain comes with severe quantity contraction. The mean
 unfunded-demand share rises by 0.49318 (95% interval [0.48349, 0.50281],
 Holm-adjusted p approximately 0.0002), from 0.03812 under administered pricing
 to 0.53130 under market pricing. Quoted-rate dispersion rises by 0.00496 and the
-leverage gradient of rationing rises by 0.39114. H2 therefore documents a
+leverage gradient of rationing rises by 0.39114. This documents a
 selection-versus-quantity tradeoff: credit recipients are more productive, but
 far less requested credit is funded.
 
@@ -348,7 +349,7 @@ Output per unit of new credit is mechanically high in the market regime because
 new credit can approach zero, so it remains secondary and is not interpreted as
 a welfare statistic.
 
-### 6.2 H3: demand-shock transmission
+### 6.2 Macroeconomic Demand-Shock Transmission
 
 The positive demand shock raises cumulative new credit by 4.00691 under
 administered pricing and 3.86237 under market pricing. The matched
@@ -359,19 +360,20 @@ administered credit impulse.
 The administered output impulse is 30.86338, compared with 30.51219 under
 market pricing. The difference is -0.35119 (95% interval [-0.45484, -0.24840],
 Holm-adjusted p approximately 0.0002), approximately 1.1 percent of the
-administered output impulse. H3 is supported at the calibration: stronger local
-pricing modestly dampens the positive shock rather than reversing it.
+administered output impulse. The hypothesis is supported at the calibration:
+stronger local pricing modestly dampens the positive shock rather than
+reversing it.
 
-The borrower-risk-pricing ablation nearly eliminates both H3 effects. In the
-corrected local sensitivity design, 12 of 13 ±10 percent parameter sets retain
-negative credit and output signs. Reducing risk pricing by 10 percent produces
-small positive estimates with intervals spanning zero; raising it strengthens
-dampening. The global stress map contains many reversals. These results identify
-the mechanism and the boundary simultaneously: H3 is locally stable across
-most examined parameters but depends on sufficiently strong borrower-risk
-pricing.
+The borrower-risk-pricing ablation nearly eliminates both shock transmission
+effects. In the corrected local sensitivity design, 12 of 13 ±10 percent
+parameter sets retain negative credit and output signs. Reducing risk pricing
+by 10 percent produces small positive estimates with intervals spanning zero;
+raising it strengthens dampening. The global stress map contains many
+reversals. These results identify the mechanism and the boundary
+simultaneously: demand-shock dampening is locally stable across most examined
+parameters but depends on sufficiently strong borrower-risk pricing.
 
-### 6.3 H7: reserves and backstops
+### 6.3 Settlement Liquidity and Emergency Facility Interactions
 
 At low reserves with an unavailable facility, market pricing produces 8.59854
 less cumulative credit than administered pricing and 0.73728 less unresolved
@@ -389,19 +391,20 @@ correction.
 
 The liquidity sign must not be read as a general advantage of the market
 regime. It occurs in the anchor where unresolved shortfalls exist, and it partly
-reflects the market regime's smaller credit volume. H7's contribution is that
-reserve and facility settings materially condition the relative regime effect.
+reflects the market regime's smaller credit volume. The key liquidity finding is
+that reserve and facility settings materially condition the relative regime
+effect.
 
-### 6.4 Topology, concentration, and LLM robustness
+### 6.4 Topology, Concentration, and LLM Robustness
 
-The H2 signs survive 30-firm/three-bank, 30/5, and 100/5 population checks. The
-original concentration cells were invalid because empirical initialization
-bypassed the switch. They remain archived. A separately frozen 150-run
-correction raises mean opening deposit HHI from 0.2012 in the low-concentration
-30/5 cell to 0.2906 in the high cell. Credit-weighted productivity effects are
-0.0659 and 0.0647, while unfunded-share effects are 0.6166 and 0.5970,
-respectively. These are within-cell regime checks, not causal estimates of
-concentration.
+The allocation and rationing signs survive 30-firm/three-bank, 30/5, and 100/5
+population checks. The original concentration cells were invalid because
+empirical initialization bypassed the switch. They remain archived. A
+separately frozen 150-run correction raises mean opening deposit HHI from 0.2012
+in the low-concentration 30/5 cell to 0.2906 in the high cell. Credit-weighted
+productivity effects are 0.0659 and 0.0647, while unfunded-share effects are
+0.6166 and 0.5970, respectively. These are within-cell regime checks, not
+causal estimates of concentration.
 
 DeepSeek R1 8B completes 30 matched pairs, with all 900 main calls valid and no
 retries. The market prompt raises the average offered rate by 0.00552 (95%
@@ -452,18 +455,3 @@ joint system. Changing one element while holding the others implicit can
 misstate the mechanism. Future work should add heterogeneous households,
 endogenous entry and bank competition, a longer default cycle, empirically
 identified production parameters, and a truly untouched validation vintage.
-
-## References to complete before submission
-
-- Ashraf, Q., Gershman, B., and Howitt, P. “Banks, Market Organization, and
-  Macroeconomic Performance: An Agent-Based Computational Analysis.”
-- Dosi, G., and Roventini, A. “Macroeconomic Policy in DSGE and Agent-Based
-  Models Redux.”
-- Hendry et al. “Agent-Based Modeling at Central Banks: Recent Developments and
-  New Challenges.”
-- Neuner et al. “Agent-Based Modeling of Long-Term Bank Credit: Buffer Policies
-  vs. Selective Lending in Stochastic Growth and Decline.”
-- Stiglitz, J. E., and Weiss, A. “Credit Rationing in Markets with Imperfect
-  Information.”
-- Zhang, Y., Xiong, X., Zhang, W., and Liu, X. “Credit Rationing and the
-  Simulation of Multi-Bank Credit Market Model.”
